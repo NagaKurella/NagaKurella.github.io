@@ -37,17 +37,17 @@
                     "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
                   }
         }).done(function(data) {
-                //alert("Retrieved " + data.length + " records from the dataset!");
-                //console.log(data);
-                
+                alert("Retrieved " + data.length + " records from the dataset!");
+                console.log(data);
+                var feat = data.features,
                 var tableData = [];
 
                 // Iterate over the JSON object
-                for (var i = 0, len = data.length; i < len; i++) {
+                for (var i = 0, len = feat.length; i < len; i++) {
                     tableData.push({
-                        "report_no": data[i].report_no,
-                        "age_1": data[i].age_1,                    
-                        "description": data[i].description
+                        "report_no": feat[i].report_no,
+                        "age_1": feat[i].age_1,                    
+                        "description": feat[i].description
                     });
                 }
 

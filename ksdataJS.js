@@ -28,22 +28,36 @@
 
     // Download the data  //// http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson
     myConnector.getData = function(table, doneCallback) {
-        $.getJSON("https://data.kcmo.org/resourse/nsn9-g8a4.json?reported_date=2014-01-01T00:00:00.000", function(resp) {
-            var feat = resp.features,
-                tableData = [];
+        
+        $.ajax({
+            url: "https://data.kcmo.org/resourse/nsn9-g8a4.json?reported_date=2014-01-01T00:00:00.000",
+            type: "GET",
+            data: {
+                    "$limit" : 5000,
+                    "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
+                  }
+        }).done(function(data) {
+                //alert("Retrieved " + data.length + " records from the dataset!");
+                //console.log(data);
+                
+                var tableData = [];
 
-            // Iterate over the JSON object
-            for (var i = 0, len = feat.length; i < len; i++) {
-                tableData.push({
-                    "report_no": feat[i].report_no,
-					"age_1": feat[i].age_1,                    
-                    "description": feat[i].description
-                });
-            }
+                // Iterate over the JSON object
+                for (var i = 0, len = data.length; i < len; i++) {
+                    tableData.push({
+                        "report_no": data[i].report_no,
+                        "age_1": data[i].age_1,                    
+                        "description": data[i].description
+                    });
+                }
 
-            table.appendRows(tableData);
-            doneCallback();
-        });
+                table.appendRows(tableData);
+                doneCallback();
+
+            });
+
+
+
     };
 
     tableau.registerConnector(myConnector);
@@ -55,4 +69,6 @@
             tableau.submit(); // This sends the connector object to Tableau
         });
     });
+
+
 })();

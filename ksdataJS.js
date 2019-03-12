@@ -40,21 +40,20 @@
                   },
             cache: false
         }).done(function(data) {                
-                var feat = data.features,
-                 tableData = [];
+                var feat1 = data.features;
+                var tableData = [];
 
                 // Iterate over the JSON object
-                for (var i = 0, len = feat.length; i < len; i++) {
+                for (var i = 0, len = data.length; i < len; i++) {
                     tableData.push({
-                        "report_no": feat[i].report_no,
-                        "age_1": feat[i].age_1,                    
-                        "description": feat[i].description
+                        "report_no": data[i].report_no,
+                        "age_1": data[i].age_1,                    
+                        "description": data[i].description
                     });
                 }
 
                 table.appendRows(tableData);
                 doneCallback();
-
             });
     };
 

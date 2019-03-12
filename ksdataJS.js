@@ -37,7 +37,8 @@
             data: {
                     "$limit" : 5000,
                     "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
-                  }
+                  },
+            cache: false
         }).done(function(data) {
                 
                 var feat = data.features,

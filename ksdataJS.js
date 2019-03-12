@@ -34,7 +34,7 @@
         $.getJSON("https://data.kcmo.org/resourse/nsn9-g8a4.json?reported_date=2014-01-01T00:00:00.000", data: {
                     "$limit" : 5000,
                     "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
-                  },
+                  }
             function(resp) {
             var feat = resp.features,
                 tableData = [];

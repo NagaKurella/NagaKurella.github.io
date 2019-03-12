@@ -31,26 +31,33 @@
                 //console.log(data);
     myConnector.getData = function(table, doneCallback) {
         
-        $.getJSON("https://data.kcmo.org/resourse/nsn9-g8a4.json?reported_date=2014-01-01T00:00:00.000", data: {
+        $.ajax({
+            url: "https://data.kcmo.org/resourse/nsn9-g8a4.json?reported_date=2014-01-01T00:00:00.000",
+            type: "GET",
+            dataType : "json",
+            data: {
                     "$limit" : 5000,
                     "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
-                  }
-            function(resp) {
-            var feat = resp.features,
-                tableData = [];
+                  },
+            cache: false
+        }).done(function(data) {
+                
+                var feat = data.features,
+                 tableData = [];
 
-            // Iterate over the JSON object
-            for (var i = 0, len = feat.length; i < len; i++) {
-                tableData.push({
-                    "report_no": feat[i].report_no,
-                    "age_1": feat[i].age_1,                    
-                    "description": feat[i].description
-                });
-            }
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    tableData.push({
+                        "report_no": feat[i].report_no,
+                        "age_1": feat[i].age_1,                    
+                        "description": feat[i].description
+                    });
+                }
 
-            table.appendRows(tableData);
-            doneCallback();
-        });
+                table.appendRows(tableData);
+                doneCallback();
+
+            });
 
 
 

@@ -46,9 +46,9 @@
                 // Iterate over the JSON object
                 for (var i = 0, len = data.length; i < len; i++) {
                     tableData.push({
-                        "report_no": data[i].report_no,
-                        "age_1": data[i].age_1,                    
-                        "description": data[i].description
+                        "report_no": "a596", //data[i].report_no,
+                        "age_1": 4, //data[i].age_1,                    
+                        "description": "test" //data[i].description
                     });
                 }
 

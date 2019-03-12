@@ -27,6 +27,8 @@
     };
 
     // Download the data  //// http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson
+    //alert("Retrieved " + data.length + " records from the dataset!");
+                //console.log(data);
     myConnector.getData = function(table, doneCallback) {
         
         $.ajax({
@@ -37,8 +39,7 @@
                     "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
                   }
         }).done(function(data) {
-                alert("Retrieved " + data.length + " records from the dataset!");
-                console.log(data);
+                
                 var feat = data.features,
                  tableData = [];
 

@@ -40,7 +40,7 @@
                 alert("Retrieved " + data.length + " records from the dataset!");
                 console.log(data);
                 var feat = data.features,
-                var tableData = [];
+                 tableData = [];
 
                 // Iterate over the JSON object
                 for (var i = 0, len = feat.length; i < len; i++) {

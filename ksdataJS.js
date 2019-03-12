@@ -29,8 +29,7 @@
     // Download the data  //// http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson
     //alert("Retrieved " + data.length + " records from the dataset!");
                 //console.log(data);
-    myConnector.getData = function(table, doneCallback) {
-        
+    myConnector.getData = function(table, doneCallback) {        
         $.ajax({
             url: "https://data.kcmo.org/resourse/nsn9-g8a4.json?reported_date=2014-01-01T00:00:00.000",
             type: "GET",
@@ -40,8 +39,7 @@
                     "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
                   },
             cache: false
-        }).done(function(data) {
-                
+        }).done(function(data) {                
                 var feat = data.features,
                  tableData = [];
 
@@ -58,10 +56,6 @@
                 doneCallback();
 
             });
-
-
-
-
     };
 
     tableau.registerConnector(myConnector);

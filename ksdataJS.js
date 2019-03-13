@@ -31,16 +31,14 @@
                 //console.log(data);
     myConnector.getData = function(table, doneCallback) {        
         $.ajax({
-            url: "https://data.kcmo.org/resourse/nsn9-g8a4.json?reported_date=2014-01-01T00:00:00.000",
+            url: "https://data.kcmo.org/resourse/nsn9-g8a4.json",
             type: "GET",
-            dataType : "json",
             data: {
                     "$limit" : 5000,
                     "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
-                  },
-            cache: false
+                  }
         }).done(function(data) {                
-                var feat1 = data.features;
+                var feat1 = data;
                 var tableData = [];
 
                 // Iterate over the JSON object

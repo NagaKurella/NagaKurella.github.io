@@ -36,7 +36,7 @@
                     url: "https://data.kcmo.org/resource/nsn9-g8a4.json",
                     type: "GET",
                     data: {
-                            "$limit" : 5000,
+                            "$limit" : 50,
                             "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
                             }
                     }).done(function(data) {

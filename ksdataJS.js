@@ -16,8 +16,21 @@
             alias: "Age",
             dataType: tableau.dataTypeEnum.int
         }, {
+            id: "sex_1",
+            alias: "Sex",
+            dataType: tableau.dataTypeEnum.string
+        },
+         {
             id: "description",
             alias: "title",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "address",
+            alias: "address (where offense occurred)",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "city",
+            alias: "city (where offense occurred)",
             dataType: tableau.dataTypeEnum.string
         }];
 
@@ -52,8 +65,11 @@
                                 tableData.push({
                                   "report_no": data[i].report_no,
                                   "reported_date":data[i].reported_date,
-                                  "age_1": data[i].age_1,                    
-                                  "description": data[i].description
+                                  "age_1": data[i].age_1,
+                                  "sex_1": data[i].sex_1,                    
+                                  "description": data[i].description,
+                                  "address": data[i].address,
+                                  "city": data[i].city
                                 });
                                 //alert(" report_no : " + data[i].report_no + " Age :" + data[i].age_1 + "; description :  " + data[i].description );
                             }

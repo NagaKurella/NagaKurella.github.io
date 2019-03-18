@@ -8,6 +8,10 @@
             id: "report_no",
             dataType: tableau.dataTypeEnum.string
         }, {
+            id: "reported_date",
+            alias: "Reported date",
+            dataType: tableau.dataTypeEnum.string
+        }, {
             id: "age_1",
             alias: "Age",
             dataType: tableau.dataTypeEnum.int
@@ -47,6 +51,7 @@
                             for (var i = 0, len = data.length; i < len; i++) {
                                 tableData.push({
                                   "report_no": data[i].report_no,
+                                  "reported_date":data[i].reported_date,
                                   "age_1": data[i].age_1,                    
                                   "description": data[i].description
                                 });

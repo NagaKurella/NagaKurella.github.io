@@ -5,10 +5,8 @@ This provides the user the ability to view the most current crime information wi
 
 <h4>About This Dataset</h4>
 Dataset Identifier: <b>nsn9-g8a4</b> <br/>
-Total Rows: 124832 <br/>
+Total Rows: <b>124,832</b> <br/>
 Source Domain: <b>data.kcmo.org</b> <br/>
 
 https://dev.socrata.com/foundry/data.kcmo.org/nsn9-g8a4
-
-
 

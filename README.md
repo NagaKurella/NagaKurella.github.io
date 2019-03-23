@@ -1,4 +1,4 @@
-# KCPD Crime Data 2014 - https://nagakurella.github.io:443/KCMOCrimedata.html
+# KCPD Crime Data 2014 - https://nagakurella.github.io/KCMOCrimedata.html
 This is a web data connector built using the <b>Socrata Open Data API (SODA)</b>, which provides programmatic access to the various datasets.
 
 This provides the user the ability to view the most current crime information within <b>Kansas City, Missouri</b>.

@@ -52,7 +52,7 @@
         schemaCallback([tableSchema]);
     };
 
-    // Download the data  //// http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson
+    // Download the data
     //alert("Retrieved " + data.length + " records from the dataset!");
                 //console.log(data);
     myConnector.getData = function(table, doneCallback) {   
@@ -62,7 +62,7 @@
                     url: "https://data.kcmo.org/resource/nsn9-g8a4.json",
                     type: "GET",
                     data: {
-                            //"$limit" : 10000,
+                            "$limit" : 100000,
                             "$$app_token" : "ji7LlDtwzlMnFnLmSPitfXVSg"
                             }
                     }).done(function(data) {

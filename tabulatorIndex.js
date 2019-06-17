@@ -148,13 +148,16 @@
         alert(jstr);
         //tableData7 = JSON.stringify(" [ " + jstr +  "] ");
         try{
+          alert("In try block - begin");
         tableData7 = JSON.parse("["+jstr.trim().slice(0, -1)+"]");
         //alert((tableData7));
         //alert(JSON.stringify(tableData8));
         //var obj999 = $.parseJSON("[" + jstr.trim().slice(0, -1) + "]");
         var obj9999 = JSON.parse("[" + jstr.trim().slice(0, -1) + "]");
+        alert("In try block - end");
         }
         catch(err) {
+          alert("catch");
           document.getElementById("error").innerHTML = err.message;
         }
         

@@ -179,6 +179,8 @@
         } 
         else 
         {
+          alert(" --- buttons.length < zero ; tabulator assignment");
+
           var table = new Tabulator("#example-table", {
             height:400, // set height of table to enable virtual DOM
             data:tableData7, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)

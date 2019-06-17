@@ -145,7 +145,7 @@
           //tableData8.push( JSON.parse(jstr2) );
         }
 
-        //alert(jstr);
+        alert(jstr);
         //tableData7 = JSON.stringify(" [ " + jstr +  "] ");
         tableData7 = JSON.parse("["+jstr.trim().slice(0, -1)+"]");
         //alert((tableData7));
@@ -180,7 +180,7 @@
         else 
         {
           alert(" --- buttons.length < zero ; tabulator assignment");
-
+          //alert(JSON.stringify(tableData7));
           var table = new Tabulator("#example-table", {
             height:400, // set height of table to enable virtual DOM
             data:tableData7, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)

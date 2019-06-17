@@ -147,12 +147,16 @@
 
         alert(jstr);
         //tableData7 = JSON.stringify(" [ " + jstr +  "] ");
+        try{
         tableData7 = JSON.parse("["+jstr.trim().slice(0, -1)+"]");
         //alert((tableData7));
         //alert(JSON.stringify(tableData8));
         //var obj999 = $.parseJSON("[" + jstr.trim().slice(0, -1) + "]");
         var obj9999 = JSON.parse("[" + jstr.trim().slice(0, -1) + "]");
-               
+        }
+        catch(err) {
+          document.getElementById("error").innerHTML = err.message;
+        }
         
         //for(var m=0;m<3;m++)
         //  { alert(tableData[0][m]); }

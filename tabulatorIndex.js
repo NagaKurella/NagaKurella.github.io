@@ -148,16 +148,16 @@
         alert(jstr);
         //tableData7 = JSON.stringify(" [ " + jstr +  "] ");
         try{
-          alert("In try block - begin");
-        tableData7 = JSON.parse("["+jstr.trim().slice(0, -1)+"]");
-        //alert((tableData7));
-        alert(JSON.stringify(tableData7));
-        //var obj999 = $.parseJSON("[" + jstr.trim().slice(0, -1) + "]");
-        var obj9999 = JSON.parse("[" + jstr.trim().slice(0, -1) + "]");
-        alert("In try block - end");
+            alert("In try block - begin");
+            tableData7 = JSON.parse("["+jstr.trim().slice(0, -1)+"]");
+            //alert((tableData7));
+            //alert(JSON.stringify(tableData7));
+          //var obj999 = $.parseJSON("[" + jstr.trim().slice(0, -1) + "]");
+          var obj9999 = JSON.parse("[" + jstr.trim().slice(0, -1) + "]");
+          //alert("In try block - end");
         }
         catch(err) {
-          alert("catch");
+          //alert("catch");
           document.getElementById("error").innerHTML = err.message;
         }
         
@@ -187,7 +187,7 @@
         else 
         {
           alert(" --- buttons.length < zero ; tabulator assignment");
-          //alert(JSON.stringify(tableData7));
+          alert(JSON.stringify(tableData7));
           var table = new Tabulator("#example-table", {
             height:400, // set height of table to enable virtual DOM
             data:tableData7, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)

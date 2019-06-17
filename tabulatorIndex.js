@@ -81,12 +81,12 @@
 
     var table_themeName = tableau.extensions.settings.get("optradio_theme");
     if(table_themeName == "theme1"){
-      $('head').append('<link rel="stylesheet" href="http://tabulator.info/css/tabulator/4.2/tabulator.min.css" type="text/css" />');
+      $('head').append('<link rel="stylesheet" href="tabulator.min.css" type="text/css" />');
     }else if(table_themeName == "theme2"){
-      $('head').append('<link rel="stylesheet" href="http://tabulator.info/css/tabulator/4.2/tabulator_simple.min.css" type="text/css" />');
+      $('head').append('<link rel="stylesheet" href="tabulator_simple.min.css" type="text/css" />');
     }
     else  if(table_themeName == "theme3"){
-      $('head').append('<link rel="stylesheet" href="http://tabulator.info/css/tabulator/4.2/tabulator_midnight.min.css" type="text/css" />');
+      $('head').append('<link rel="stylesheet" href="tabulator_midnight.min.css" type="text/css" />');
     }
 
     // Add an event listener to the worksheet.

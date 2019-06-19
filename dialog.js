@@ -134,14 +134,14 @@
   // This function closes the dialog box without.
   function closeDialog() {
     alert("in closeDialog - definition ");
-    tableau.extensions.ui.closeDialog("10");
+    tableau.extensions.ui.closeDialog("5");
   } // end of close button
 
   // This function saves then settings and then closes then closes the dialogue
   // window.
   function saveButton() {
 
-    alert("in saveButton - definition ");
+    //alert("in saveButton - definition ");
     // Data settings
     tableau.extensions.settings.set("worksheet", $("#selectWorksheet").val());
     //tableau.extensions.settings.set("max_no_records", $("#max_no_records").val());
@@ -260,8 +260,8 @@
 
     // Call saveAsync to save the settings before calling closeDialog.
     tableau.extensions.settings.saveAsync().then((currentSettings) => {
-      alert("in saveButton() --> tableau.extensions.settings.saveAsync() ");
-      tableau.extensions.ui.closeDialog("10");
+      //alert("in saveButton() --> tableau.extensions.settings.saveAsync() ");
+      tableau.extensions.ui.closeDialog("5");
     });
 
 

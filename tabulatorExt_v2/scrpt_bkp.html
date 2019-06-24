@@ -1,0 +1,142 @@
+<script type="text/javascript">
+
+    //alert("hi");
+
+    var tableDataNested = [
+  {name:"Oli Bob", location:"United Kingdom", gender:"male", col:"red", dob:"14/04/1984", _children:[
+      {name:"Mary May", location:"Germany", gender:"female", col:"blue", dob:"14/05/1982"},
+      {name:"Christine Lobowski", location:"France", gender:"female", col:"green", dob:"22/05/1982"},
+      {name:"Brendon Philips", location:"USA", gender:"male", col:"orange", dob:"01/08/1980", _children:[
+          {name:"Margret Marmajuke", location:"Canada", gender:"female", col:"yellow", dob:"31/01/1999"},
+          {name:"Frank Harbours", location:"Russia", gender:"male", col:"red", dob:"12/05/1966"},
+      ]},
+  ]},
+  {name:"Jamie Newhart", location:"India", gender:"male", col:"green", dob:"14/05/1985"},
+  {name:"Gemma Jane", location:"China", gender:"female", col:"red", dob:"22/05/1982", _children:[
+      {name:"Emily Sykes", location:"South Korea", gender:"female", col:"maroon", dob:"11/11/1970"},
+  ]},
+  {name:"James Newman", location:"Japan", gender:"male", col:"red", dob:"22/03/1998"},
+];
+
+var tableDataNested2 = [
+{"Id":"1","Category":"Technology","Parent":"","sales":"100", 
+   "_children": [ {"Id":"2","Category":"Tech-1","Parent":"1","sales":"50"}, 
+                  {"Id":"3","Category":"Tech-2","Parent":"1","sales":"50", 
+                   "_children":[{"Id":"4","Category":"Tech-2.1","Parent":"3","sales":"50"}
+                    ]
+                  }
+               ]}, 				 
+{"Id":"5","Category":"OfficeSupplies","Parent":"","sales":"1000","children":[]}
+];
+
+    /* var table = new Tabulator("#example-table", {
+  height:"311px",
+  data:tableDataNested2,
+  dataTree:true,
+  dataTreeStartExpanded:false,   // dataTreeStartExpanded:true,
+  columns:[
+  //{title:"Id", field:"Id", width:200, responsive:0}, //never hide this column
+  {title:"Category", field:"Category", width:150, responsive:2},
+  {title:"sales", field:"sales", width:150}, //hide this column first
+  
+  ],
+}); */
+
+
+  /* {title:"Name", field:"name", width:200, responsive:0}, //never hide this column
+  {title:"Location", field:"location", width:150},
+  {title:"Gender", field:"gender", width:150, responsive:2}, //hide this column first
+  {title:"Favourite Color", field:"col", width:150},
+  {title:"Date Of Birth", field:"dob", align:"center", sorter:"date", width:150}, */
+
+
+
+
+//var tableDataNested2 = JSON.parse(JSON.stringify(convertToHierarchy()));
+
+
+var arry = [{ "Id": "1", "Category": "Technology", "Parent": "", "sales": "100" },
+                          { "Id": "2", "Category": "Tech-1",     "Parent": "1", "sales": "50" },
+                          { "Id": "3", "Category": "Tech-2",     "Parent": "1", "sales": "50" },
+                          { "Id": "4", "Category": "Tech-2.1",   "Parent": "3", "sales": "50" },
+                          { "Id": "5", "Category": "OfficeSupplies", "Parent": "", "sales": "1000" }
+                        ];
+
+
+//document.getElementById("t1").innerHTML = JSON.stringify(convert(arry));
+var str1 = JSON.stringify(convert(arry));
+
+str1 = str1.replace('{"_children":',''); 
+str1 = str1.slice(0, -1);  ////// trim last character }
+//for (i=0;i<=10;i++)
+//{
+// str1 = str1.replace(',"_children":[]','');   // ,"_children":[] 
+//}
+var str2 = replaceAll(str1,',"_children":[]','');
+document.getElementById("t1").innerHTML = str2;
+
+var tableDataNested3 = JSON.parse(str2);
+
+var table = new Tabulator("#example-table", {
+  height:"311px",
+  data:tableDataNested3,
+  dataTree:true,
+  dataTreeStartExpanded:false,   // dataTreeStartExpanded:true,
+  columns:[
+  //{title:"Id", field:"Id", width:200, responsive:0}, //never hide this column
+  {title:"Category", field:"Category", width:150, responsive:2},
+  {title:"sales", field:"sales", width:150}, //hide this column first
+  
+  ],
+});
+
+
+  function replaceAll(str, term, replacement) {
+    return str.replace(new RegExp(escapeRegExp(term),'g'), replacement);
+  }
+
+  function escapeRegExp(string){
+    return string.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  }
+
+
+  function convert(array){
+  var map = {}
+  for(var i = 0; i < array.length; i++){
+      var obj = array[i]
+      if(!(obj.Id in map)){
+          map[obj.Id] = obj
+          map[obj.Id]._children = []
+      }
+
+      if(typeof map[obj.Id].Name == 'undefined'){
+          map[obj.Id].Id = obj.Id
+          map[obj.Id].Name = obj.Name
+          map[obj.Id].attr = obj.attr
+          map[obj.Id].Parent= obj.Parent
+      }
+
+      var parent = obj.Parent || '-';
+      if(!(parent in map)){
+          map[parent] = {}
+          map[parent]._children = []
+      }
+
+      map[parent]._children.push(map[obj.Id])
+  }
+  return map['-']
+}
+
+
+  </script>
+
+
+
+
+
+//var qry3 = '';
+var qry3 = 'INSERT INTO tbl_InData4(parentID, Category, Quantity,Sales) ';
+    qry3 = qry3 + ' SELECT tbl_InData.Id parentID, tbl_InData3.Manufacturer Category, tbl_InData3.Quantity, tbl_InData3.Sales FROM tbl_InData3 '
+    qry3 = qry3 + '  LEFT JOIN tbl_InData ON tbl_InData3.SubCategory = tbl_InData.Category ';
+alasql(qry3);    //tbl_InData3.Manufacturer AS Category
+//var p_c_data = alasql(qry3);

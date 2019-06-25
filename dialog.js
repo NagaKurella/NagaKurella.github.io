@@ -95,6 +95,13 @@
         var worksheetColumns = sumdata.columns;
         // This blanks out the column list
         $("#sort-it ol").text("");
+        
+        $("#sort-it2").text("");
+        var table_tag = '<table class='table table-sortable">';
+        table_tag = table_tag + '<thead><tr>  <th>#</th> <th>Field Name</th> <th>Alias Name</th> <th>Field Type</th> </tr></thead>';
+        table_tag = table_tag + '</table>';
+        $("#sort-it2").html(table_tag);
+        
         var counter = 1;
         worksheetColumns.forEach(function (current_value) {
           // For each column we add a list item with an input box and label.

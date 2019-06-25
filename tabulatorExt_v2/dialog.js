@@ -38,11 +38,11 @@
       var column_order_array = tableau.extensions.settings.get("column_order").split("|");
       $("#sort-it ol").text("");
       
-      $("#sort-it2").html("");
-      var table_tag = '<table class='table table-sortable">';
+      $("#sort-it2").text("");
+      var table_tag = '<table class="table table-sortable">';
       table_tag = table_tag + '<thead><tr>  <th>#</th> <th>Field Name</th> <th>Alias Name</th> <th>Field Type</th> </tr></thead>';
       table_tag = table_tag + '</table>';
-      alert(table_tag);
+      //alert(table_tag);
       $("#sort-it2").html(table_tag);
       
       for (var i = 0; i < column_names_array.length; i++) {

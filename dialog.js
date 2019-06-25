@@ -94,13 +94,7 @@
       worksheet.getUnderlyingDataAsync({ maxRows: 1 }).then(function (sumdata) {
         var worksheetColumns = sumdata.columns;
         // This blanks out the column list
-        $("#sort-it ol").text("");
-        
-        $("#sort-it2").text("");
-        var table_tag = '<table class='table table-sortable">';
-        table_tag = table_tag + '<thead><tr>  <th>#</th> <th>Field Name</th> <th>Alias Name</th> <th>Field Type</th> </tr></thead>';
-        table_tag = table_tag + '</table>';
-        $("#sort-it2").html(table_tag);
+        $("#sort-it ol").text("");     
         
         var counter = 1;
         worksheetColumns.forEach(function (current_value) {

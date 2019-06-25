@@ -37,6 +37,13 @@
       var column_names_array = tableau.extensions.settings.get("column_names").split("|");
       var column_order_array = tableau.extensions.settings.get("column_order").split("|");
       $("#sort-it ol").text("");
+      
+      $("#sort-it2").text("");
+      var table_tag = '<table class='table table-sortable">';
+      table_tag = table_tag + '<thead><tr>  <th>#</th> <th>Field Name</th> <th>Alias Name</th> <th>Field Type</th> </tr></thead>';
+      table_tag = table_tag + '</table>';
+      $("#sort-it2").html(table_tag);
+      
       for (var i = 0; i < column_names_array.length; i++) {
         //alert(column_names_array[i] + " : " + column_order_array[i]);
         $("#sort-it ol").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");

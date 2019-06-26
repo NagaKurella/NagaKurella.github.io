@@ -1,0 +1,34 @@
+
+ <script type="text/javascript" src="http://tabulator.info/js/tabulator/4.2/tabulator.min.js"></script>
+
+standard : 
+<link href="http://tabulator.info/css/tabulator/4.2/tabulator.min.css" rel="stylesheet">
+
+simple : 
+<link href="http://tabulator.info/css/tabulator/4.2/tabulator_simple.min.css" rel="stylesheet">
+
+midnight :
+<link href="http://tabulator.info/css/tabulator/4.2/tabulator_midnight.min.css" rel="stylesheet">
+
+---------------------------------
+<link href="http://tabulator.info/css/tabulator/4.2/tabulator.min.css" rel="stylesheet">
+
+after body dialog.html
+<script type="text/javascript" src="https://tableaumagic.com/datatable/lib/materialize-css/dist/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://tableaumagic.com/datatable/lib/materialize-css/dist/js/materialize.min.js"></script>
+
+<script type="text/javascript" src="https://tableaumagic.com/datatable/lib/jquery-sortable/source/js/jquery-sortable-min.js"></script>
+
+<!-- <link rel="stylesheet" type="text/css" 
+      href="https://tableaumagic.com/datatable/lib/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://tableaumagic.com/datatable/css/dialog.css"> -->
+
+
+
+<script type="text/javascript" src="https://tableaumagic.com/datatable/lib/materialize-css/dist/js/materialize.min.js"></script>
+
+
+
+
+
+

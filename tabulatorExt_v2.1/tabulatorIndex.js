@@ -387,7 +387,7 @@
   function configure() {
 
     //const popupUrl = `${window.location.origin}/datatable/dialog.html`;
-    const popupUrl = `${window.location.origin}/dialog.html`;
+    const popupUrl = `${window.location.origin}/tabulatorExt_v2.1/dialog.html`;
 
     let input = "";
 

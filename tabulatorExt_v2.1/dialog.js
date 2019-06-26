@@ -139,6 +139,8 @@
         worksheetColumns.forEach(function (current_value) {
           // For each column we add a list item with an input box and label.
           // Note that this is based on materialisecss.
+          var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + current_value.dataType +" ";
+          alert(fieldInfo);
           $("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
           counter++;
         });

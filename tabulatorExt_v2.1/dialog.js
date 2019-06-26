@@ -52,10 +52,10 @@
         $("#sort-it ol").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");
       }
       
-      alert("before binding table to DIV");  
+      //alert("before binding table to DIV");  
       $("#sort-it2").text("");
       var table_tag = '<table id="tblFieldInfo" class="table table-sortable table-condensed table-bordered table-hover" >';
-      table_tag = table_tag + '<thead> <tr> <th># </th> <th> Field Name </th> <th> Aias Name </th> <th>Field Type </th> </tr> </thead>';
+      table_tag = table_tag + '<thead> <tr> <th># </th> <th> Field Name </th> <th> Alternate Name </th> <th>Field Type </th> </tr> </thead>';
       table_tag = table_tag + '<tbody>';
       var tr_tag = '';
       for (var i = 0; i < column_names_array.length; i++) {
@@ -63,11 +63,11 @@
         //$("#sort-it2").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
-        tr_tag = tr_tag + '<td> <label class="badge badge-secondary">'+column_names_array[i]+'</label> </td>';
+        tr_tag = tr_tag + '<td> <h4><label class="badge badge-secondary">'+column_names_array[i]+'</label></h4> </td>';
         tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" class="form-control" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
-        alert(tr_tag);
+        //alert(tr_tag);
         table_tag = table_tag + tr_tag;
       }
       table_tag = table_tag + '</tbody>';

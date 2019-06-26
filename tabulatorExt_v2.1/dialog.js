@@ -63,7 +63,7 @@
         //$("#sort-it2").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
-        tr_tag = tr_tag + '<td> <h4><label class="badge badge-secondary">'+column_names_array[i]+'</label></h4> </td>';
+        tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+column_names_array[i]+'</label></h5> </td>';
         tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" class="form-control" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
@@ -154,7 +154,7 @@
           // For each column we add a list item with an input box and label.
           // Note that this is based on materialisecss.
           var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + current_value.dataType +" ";
-          alert(fieldInfo);
+          //alert(fieldInfo);
           $("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
           counter++;
         });

@@ -63,7 +63,7 @@
         //$("#sort-it2").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
-        tr_tag = tr_tag + '<td> '+column_names_array[i]+' </td>';
+        tr_tag = tr_tag + '<td> <label class="badge badge-secondary">'+column_names_array[i]+'</label> </td>';
         tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" class="form-control" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';

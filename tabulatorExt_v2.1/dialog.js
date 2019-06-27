@@ -163,7 +163,7 @@
           var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + fieldType_dim_Measure(current_value.dataType) +" ";
           alert(fieldInfo);
           $("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
-          counter++;
+          //counter++;
 	
 	  tr_tag = '<tr>';
           tr_tag = tr_tag + '<td> <span>::::</span> '+counter+' </td> ';
@@ -173,6 +173,8 @@
           tr_tag = tr_tag + '</tr>';
           //alert(tr_tag);
           table_tag = table_tag + tr_tag;
+		
+	  counter++;	
 	  
         });
 	  table_tag = table_tag + '</tbody>';

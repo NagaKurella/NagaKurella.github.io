@@ -179,7 +179,16 @@
         });
 	  table_tag = table_tag + '</tbody>';
           table_tag = table_tag + '</table>';      
-          $("#sort-it2").append(table_tag);    
+          $("#sort-it2").append(table_tag); 
+	  
+	  $('.table-sortable tbody').sortable({
+        	placeholder: "ui-state-highlight"
+      	    });
+
+          $("#tblFieldInfo").sortable({
+            handle: 'span'
+          });
+	  
       });
     }
 

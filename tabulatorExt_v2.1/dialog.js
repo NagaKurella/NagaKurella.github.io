@@ -64,7 +64,7 @@
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
         tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+column_names_array[i]+'</label></h5> </td>';
-        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" class="form-control" /> </td>';
+        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num='" + i + "' class="form-control" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
         //alert(tr_tag);
@@ -292,8 +292,8 @@
     // --- column_name will look like: SUM(Sales)|Country|Region
     var column_order = "";
     var column_name = "";
-    var counter = 0;
-    $("#sort-it").find("input").each(function (column) {      
+    var counter = 0; //tblFieldInfo  $("#sort-it")
+    $("#sort-it2 tblFieldInfo").find("input").each(function (column) {      
       // This handles the column order
       if (counter == 0) {
         column_order = $(this).attr("col_num");

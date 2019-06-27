@@ -45,6 +45,7 @@
     if (column_order != undefined && column_order.length > 0) {
       var column_names_array = tableau.extensions.settings.get("column_names").split("|");
       var column_order_array = tableau.extensions.settings.get("column_order").split("|");
+      var col_AltNames_array = tableau.extensions.settings.get("col_AltNames").split("|");
       
       $("#sort-it ol").text("");
       for (var i = 0; i < column_names_array.length; i++) {
@@ -64,7 +65,7 @@
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
         tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+column_names_array[i]+'</label></h5> </td>';
-        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" /> </td>';
+        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" value="'+ col_AltNames_array[i] +'" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
         alert(tr_tag);
@@ -291,7 +292,10 @@
     // --- column_order will look like: 3|1|2
     // --- column_name will look like: SUM(Sales)|Country|Region
     var column_order = "";
-    var column_name = "";
+    var column_name = ""; 
+    var col_AltNames = "";
+    var col_Types = "";
+	  
     var counter = 0; //tblFieldInfo  $("#sort-it")  #sort-it2 
     $("#tblFieldInfo").find("input").each(function (column) {      
       // This handles the column order
@@ -304,22 +308,39 @@
       if (counter == 0) {
         if ($(this).val().length > 0) {
           column_name = $(this).val();
-        } else {
-          column_name = $(this).attr("id");
-        }
+        } //else {
+          //column_name = $(this).attr("id");
+        //}
       } else {
         if ($(this).val().length > 0) {
           column_name = column_name + "|" + $(this).val();
-        } else {
-          column_name = column_name + "|" + $(this).attr("id");
-        }
+        } //else {
+          //column_name = column_name + "|" + $(this).attr("id");
+        //}
       }
+      
+      // This handles the column ALTERNATE name.
+      if (counter == 0) {
+        if ($(this).val().length > 0) {
+          col_AltNames = $(this).val();
+        } 
+	      //else {
+          //column_name = $(this).attr("id");
+        //}
+      } else {
+        if ($(this).val().length > 0) {
+          col_AltNames = col_AltNames + "|" + $(this).val();
+        } //else {
+          //column_name = column_name + "|" + $(this).attr("id");
+        //}
+      }	    
       counter++;
     });
 
     // We save the column order and column name variables in the UI Namespace.
     tableau.extensions.settings.set("column_order", column_order);
     tableau.extensions.settings.set("column_names", column_name);
+    tableau.extensions.settings.set("col_AltNames", col_AltNames);
 
     // Call saveAsync to save the settings before calling closeDialog.
     tableau.extensions.settings.saveAsync().then((currentSettings) => {

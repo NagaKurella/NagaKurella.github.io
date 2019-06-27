@@ -151,6 +151,12 @@
         // This blanks out the column list
         $("#sort-it ol").text("");
         var counter = 1;
+	      
+       var table_tag = '<table id="tblFieldInfo" class="table table-sortable table-condensed table-bordered table-hover" >';
+       table_tag = table_tag + '<thead> <tr> <th># </th> <th> Field Name </th> <th> Alternate Name </th> <th>Field Type </th> </tr> </thead>';
+       table_tag = table_tag + '<tbody>';
+       var tr_tag = '';
+	      
         worksheetColumns.forEach(function (current_value) {
           // For each column we add a list item with an input box and label.
           // Note that this is based on materialisecss.
@@ -158,7 +164,20 @@
           alert(fieldInfo);
           $("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
           counter++;
+	
+	  tr_tag = '<tr>';
+          tr_tag = tr_tag + '<td> <span>::::</span> '+counter+' </td> ';
+          tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+current_value.fieldName+'</label></h5> </td>';
+          tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+counter+'" col_num="' + (counter) + '" class="form-control" value="'+ current_value.fieldName +'" /> </td>';
+          tr_tag = tr_tag + '<td> <select id="fldType_'+counter+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
+          tr_tag = tr_tag + '</tr>';
+          //alert(tr_tag);
+          table_tag = table_tag + tr_tag;
+	  
         });
+	  table_tag = table_tag + '</tbody>';
+          table_tag = table_tag + '</table>';      
+          $("#sort-it2").append(table_tag);    
       });
     }
 

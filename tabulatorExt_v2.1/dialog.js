@@ -297,6 +297,9 @@
     var col_Types = "";
 	  
     var counter = 0; //tblFieldInfo  $("#sort-it")  #sort-it2 
+    if($("#tblFieldInfo").length)
+    { 
+    
     $("#tblFieldInfo").find("input").each(function (column) {      
       // This handles the column order
       if (counter == 0) {
@@ -335,6 +338,7 @@
       }	    
       counter++;
     });
+    }
 
     // We save the column order and column name variables in the UI Namespace.
     tableau.extensions.settings.set("column_order", column_order);

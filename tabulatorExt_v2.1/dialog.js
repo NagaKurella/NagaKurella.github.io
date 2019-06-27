@@ -341,17 +341,18 @@
       // This handles the column name.
       if (counter == 0) {
         if ($(this).val().length > 0) {
-          column_name = $(this).val();
+          //column_name = $(this).val();
+	  column_name = $(this).attr("data-fieldname");	
         } //else {
           //column_name = $(this).attr("id");
         //}
       } else {
         if ($(this).val().length > 0) {
-          column_name = column_name + "|" + $(this).val();
-        } else {
-          //column_name = column_name + "|" + $(this).attr("id");
-	    column_name = column_name + "|" + $(this).attr("data-fieldname");
-        }
+          //column_name = column_name + "|" + $(this).val();
+	  column_name = column_name + "|" + $(this).attr("data-fieldname");
+        } //else {
+          //column_name = column_name + "|" + $(this).attr("id");	    
+        //}
       }
       
       // This handles the column ALTERNATE name.

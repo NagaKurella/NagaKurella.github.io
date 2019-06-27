@@ -323,8 +323,7 @@
       if (counter == 0) {
         if ($(this).val().length > 0) {
           col_AltNames = $(this).val();
-        } 
-	      //else {
+        } //else {
           //column_name = $(this).attr("id");
         //}
       } else {

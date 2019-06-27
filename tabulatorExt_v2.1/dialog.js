@@ -58,13 +58,13 @@
       var table_tag = '<table id="tblFieldInfo" class="table table-sortable table-condensed table-bordered table-hover" >';
       table_tag = table_tag + '<thead> <tr> <th># </th> <th> Field Name </th> <th> Alternate Name </th> <th>Field Type </th> </tr> </thead>';
       table_tag = table_tag + '<tbody>';
-      var tr_tag = '';
+      var tr_tag = ''; // "badge badge-secondary"
       for (var i = 0; i < column_names_array.length; i++) {
         //alert(column_names_array[i] + " : " + column_order_array[i]);   class="glyphicon glyphicon-move"
         //$("#sort-it2").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
-        tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+column_names_array[i]+'</label></h5> </td>';
+        tr_tag = tr_tag + '<td> <h5><label class= class="'+fieldType_dim_Measure(column_names_array[i]).badgeCSSClassName+'"  >'+column_names_array[i]+'</label></h5> </td>';
         tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" value="'+ col_AltNames_array[i] +'" data-fieldname= "'+column_names_array[i]+'" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
@@ -161,14 +161,15 @@
         worksheetColumns.forEach(function (current_value) {
           // For each column we add a list item with an input box and label.
           // Note that this is based on materialisecss.
-          var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + fieldType_dim_Measure(current_value.dataType) +" ";
+		var fieldInfo2 = fieldType_dim_Measure(current_value.dataType);
+          var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + fieldInfo2.fieldType +" ";
           alert(fieldInfo);
           $("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
           //counter++;
 	
 	  tr_tag = '<tr>';
           tr_tag = tr_tag + '<td> <span>::::</span> '+counter+' </td> ';
-          tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+current_value.fieldName+'</label></h5> </td>';
+          tr_tag = tr_tag + '<td> <h5><label class="'+fieldInfo2.badgeCSSClassName+'" >'+current_value.fieldName+'</label></h5> </td>';
           tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+counter+'" col_num="' + (counter) + '" class="form-control" value="'+ current_value.fieldName +'" data-fieldname= "'+current_value.fieldName+'"   /> </td>';
           tr_tag = tr_tag + '<td> <select id="fldType_'+counter+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
           tr_tag = tr_tag + '</tr>';
@@ -214,16 +215,21 @@
   }
   
   function fieldType_dim_Measure(fldType){
-    var retValue = "";
-	  if(fldType.toLowerCase() == "string"){
-      retValue = "dimension";
+	  
+    var fieldType = "";
+    var badgeCSSClassName = "";	  
+    if(fldType.toLowerCase() == "string"){
+      fieldType = "dimension";
+      badgeCSSClassName = "badge badge-primary";	    
     }
     else if(fldType.toLowerCase() == "int" || fldType.toLowerCase() == "float" ){
-      retValue = "measure";
+      fieldType = "measure"; badgeCSSClassName = "badge badge-success";
     }
-    else { retValue = "dimension"; }
+    else { fieldType = "dimension"; badgeCSSClassName = "badge badge-primary"; }
     
-    return(retValue);
+    var obj = {  fieldType: fieldType, badgeCSSClassName: badgeCSSClassName  };
+
+    return obj;
   }
 
   // This function closes the dialog box without.

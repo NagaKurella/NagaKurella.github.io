@@ -152,6 +152,7 @@
         $("#sort-it ol").text("");
         var counter = 1;
 	      
+	$("#sort-it2").text("");      
        var table_tag = '<table id="tblFieldInfo" class="table table-sortable table-condensed table-bordered table-hover" >';
        table_tag = table_tag + '<thead> <tr> <th># </th> <th> Field Name </th> <th> Alternate Name </th> <th>Field Type </th> </tr> </thead>';
        table_tag = table_tag + '<tbody>';

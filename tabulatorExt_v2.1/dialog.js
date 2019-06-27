@@ -293,7 +293,7 @@
     var column_order = "";
     var column_name = "";
     var counter = 0; //tblFieldInfo  $("#sort-it")  #sort-it2 
-    $("#sort-it").find("input").each(function (column) {      
+    $("#tblFieldInfo").find("input").each(function (column) {      
       // This handles the column order
       if (counter == 0) {
         column_order = $(this).attr("col_num");

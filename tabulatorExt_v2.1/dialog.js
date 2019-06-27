@@ -65,7 +65,7 @@
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
         tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+column_names_array[i]+'</label></h5> </td>';
-        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" value="'+ col_AltNames_array[i] +'" /> </td>';
+        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" value="'+ col_AltNames_array[i] +'" data-fieldname= "'+column_names_array[i]+'" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
         alert(tr_tag);
@@ -169,7 +169,7 @@
 	  tr_tag = '<tr>';
           tr_tag = tr_tag + '<td> <span>::::</span> '+counter+' </td> ';
           tr_tag = tr_tag + '<td> <h5><label class="badge badge-secondary">'+current_value.fieldName+'</label></h5> </td>';
-          tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+counter+'" col_num="' + (counter) + '" class="form-control" value="'+ current_value.fieldName +'" /> </td>';
+          tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+counter+'" col_num="' + (counter) + '" class="form-control" value="'+ current_value.fieldName +'" data-fieldname= "'+current_value.fieldName+'"   /> </td>';
           tr_tag = tr_tag + '<td> <select id="fldType_'+counter+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
           tr_tag = tr_tag + '</tr>';
           //alert(tr_tag);
@@ -348,9 +348,10 @@
       } else {
         if ($(this).val().length > 0) {
           column_name = column_name + "|" + $(this).val();
-        } //else {
+        } else {
           //column_name = column_name + "|" + $(this).attr("id");
-        //}
+	    column_name = column_name + "|" + $(this).attr("data-fieldname");
+        }
       }
       
       // This handles the column ALTERNATE name.

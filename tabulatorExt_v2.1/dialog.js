@@ -345,7 +345,7 @@
       // col_Dim_Measures : dimension1|dimension2|...measure1|measure2 ...
       	    
       if (counter == 0) {
-        var col_Dim_Measures = $(this).attr("data-fieldtype");
+        col_Dim_Measures = $(this).attr("data-fieldtype");
       } else {
         col_Dim_Measures = col_Dim_Measures + "|" + $(this).attr("data-fieldtype");
       }

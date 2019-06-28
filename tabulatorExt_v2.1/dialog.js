@@ -407,6 +407,7 @@
     tableau.extensions.settings.set("column_order", column_order);
     tableau.extensions.settings.set("column_names", column_name);
     tableau.extensions.settings.set("col_AltNames", col_AltNames);
+	  alert("before saving... " + col_Dim_Measures);
     tableau.extensions.settings.set("col_Dim_Measures", col_Dim_Measures);
     tableau.extensions.settings.set("Dimensions_Count", dCnt);
     tableau.extensions.settings.set("Measures_Count", mCnt);	  

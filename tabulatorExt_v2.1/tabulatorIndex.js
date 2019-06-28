@@ -244,7 +244,7 @@
           {            
             insertQry = "";
             insertQry = 'INSERT INTO tblSheetData(Category,Manufacturer,SubCategory,Quantity,Sales) VALUES(';
-            insertQry = insertQry + ' "'+tableData7[x].Category+'", "'+tableData7[x].Manufacturer+'", "'+tableData7[x].SubCategory + '", '+tableData7[x].Quantity+', '+tableData7[x].Sales+' )';
+            insertQry = insertQry + ' "'+tableData7[x][0]+'", "'+tableData7[x].Manufacturer+'", "'+tableData7[x].SubCategory + '", '+tableData7[x].Quantity+', '+tableData7[x].Sales+' )';
             alasql(insertQry);
             //alert(tableData7[x].Category);
           }

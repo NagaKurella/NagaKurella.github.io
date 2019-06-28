@@ -312,7 +312,7 @@
                 //alert(insertQry);
                 alasql(insertQry);
             }
-           alert(JSON.stringify(alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category')));
+           alert(JSON.stringify(alasql('SELECT dimension1, SUM(measure1) As Q FROM tblSheetData GROUP BY dimension1')));
           //// alternate code for above block /////////////// JSON.stringify(p_c_data);
           
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');

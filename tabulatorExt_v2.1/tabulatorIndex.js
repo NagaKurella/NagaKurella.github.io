@@ -263,6 +263,7 @@
           var insertQry = "";
           // alert(tableData7[0].Category);  // this JSON object propery names changed to generic names, so it does not work
           alert(tableData7[0].dimension1);
+          /* // working fine
           for(var x=0;x<tableData7.length;x++)
           {            
             insertQry = "";
@@ -271,6 +272,24 @@
             alasql(insertQry);
             //alert(tableData7[x].Category);
           }
+          */
+          
+          //// alternate code for above block ///////////////
+          var tbl_col_list = "";
+		      for( var x=0;x<dimCount;x++) { tbl_col_list = tbl_col_list + col_d_m_array2[x] + ", "; }
+		      for( var y=0;y<measureCnt;y++) { 
+              var m = parseInt(y) + parseInt(dimCount);            
+              tbl_col_list = tbl_col_list + col_d_m_array2[m] + ", "; 
+            }
+		      tbl_col_list = tbl_col_list.trim().slice(0, -1);
+		  
+		        for(var x=0;x<2;x++){
+			          insertQry = "";
+                insertQry = 'INSERT INTO tblSheetData('+tbl_col_list+') VALUES(';
+				        alert(insertQry);
+		        }
+          //// alternate code for above block ///////////////
+          
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');
           alasql('DROP TABLE IF EXISTS tbl_InData');
           alasql('CREATE TABLE tbl_InData(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');

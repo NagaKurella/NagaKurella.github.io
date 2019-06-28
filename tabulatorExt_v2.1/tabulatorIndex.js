@@ -297,7 +297,18 @@
                 } else if(parseInt(dimCount)==5) {
                   insertQry = insertQry + ' "'+tableData7[x].dimension1+'", "'+tableData7[x].dimension2 + '", "'+tableData7[x].dimension3 + '", "'+tableData7[x].dimension4 + '", "'+tableData7[x].dimension5 + '", ';
                 }
-				        alert(insertQry);
+                //alert(insertQry);
+                if(parseInt(measureCnt)==1) {  
+                  insertQry = insertQry + ' "'+tableData7[x].measure1+'") ';
+                } else if(parseInt(measureCnt)==2) {  
+                  insertQry = insertQry + ' "'+tableData7[x].measure1+'", "'+tableData7[x].measure2 + '") ';               
+                } else if(parseInt(measureCnt)==3) {
+                  insertQry = insertQry + ' "'+tableData7[x].measure1+'", "'+tableData7[x].measure2 + '", "'+tableData7[x].measure3 + '") ';
+                } else if(parseInt(measureCnt)==4){
+                  insertQry = insertQry + ' "'+tableData7[x].measure1+'", "'+tableData7[x].measure2 + '", "'+tableData7[x].measure3 + '", "'+tableData7[x].measure4 + '") ';
+                } else if(parseInt(measureCnt)==5) {
+                  insertQry = insertQry + ' "'+tableData7[x].measure1+'", "'+tableData7[x].measure2 + '", "'+tableData7[x].measure3 + '", "'+tableData7[x].measure4 + '", "'+tableData7[x].measure + '") ';
+                }
 		        }
           //// alternate code for above block ///////////////
           

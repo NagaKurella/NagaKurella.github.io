@@ -309,6 +309,7 @@
                 } else if(parseInt(measureCnt)==5) {
                   insertQry = insertQry + ' "'+tableData7[x].measure1+'", "'+tableData7[x].measure2 + '", "'+tableData7[x].measure3 + '", "'+tableData7[x].measure4 + '", "'+tableData7[x].measure + '") ';
                 }
+                alert(insertQry);
 		        }
           //// alternate code for above block ///////////////
           

@@ -245,23 +245,23 @@
           //alert("In preparing TABLE using ALASQL");
           alasql('DROP TABLE IF EXISTS tblSheetData');
           // below code line is hardcoded ; working fine
-          alasql('CREATE TABLE tblSheetData(Category STRING, Manufacturer STRING, SubCategory STRING, Quantity REAL, Sales REAL)'); 
+          //alasql('CREATE TABLE tblSheetData(Category STRING, Manufacturer STRING, SubCategory STRING, Quantity REAL, Sales REAL)'); 
           var crt_tbl_t1 = ' CREATE TABLE tblSheetData( ';
           var crt_tbl_t1_col = "";
           for ( var x=0;x<dimCount;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array2[x] + " STRING, "; }
           for ( var y=0;y<measureCnt;y++) { 
-            var m = parseInt(y) + parseInt(dimCount);
-            alert(" m : " + m);
+            var m = parseInt(y) + parseInt(dimCount);            
             crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array2[m] + " REAL, "; 
           }
           crt_tbl_t1_col = crt_tbl_t1_col.trim().slice(0, -1);
           crt_tbl_t1 = crt_tbl_t1 + crt_tbl_t1_col + ')';
           alert(crt_tbl_t1);
+          alasql(crt_tbl_t1);
           //alasql('INSERT INTO tblSheetData(Category,Quantity) VALUES("cate1",10) ');
           //alasql('INSERT INTO tblSheetData(Category,Quantity) VALUES("cate1",20) ');
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');
           var insertQry = "";
-          alert(tableData7[0].Category);
+          // alert(tableData7[0].Category);  // this JSON object propery names changed to generic names, so it does not work
           alert(tableData7[0].dimension1);
           for(var x=0;x<tableData7.length;x++)
           {            

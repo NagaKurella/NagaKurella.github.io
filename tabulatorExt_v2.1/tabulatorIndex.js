@@ -247,7 +247,7 @@
           var crt_tbl_t1 = ' CREATE TABLE tblSheetData( ';
           var crt_tbl_t1_col = "";
           for ( var x=0;x<dimCount;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[x] + " STRING, "; }
-          for ( var y=0;y<measureCnt;y++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[y] + " REAL, "; }
+          for ( var y=0;y<measureCnt;y++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[(y+dimCount)] + " REAL, "; }
           crt_tbl_t1_col = crt_tbl_t1_col.trim().slice(0, -1);
           crt_tbl_t1 = crt_tbl_t1 + crt_tbl_t1_col + ')';
           alert(crt_tbl_t1);

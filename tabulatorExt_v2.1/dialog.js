@@ -335,7 +335,8 @@
     var col_Types = "";
     var col_Dim_Measures = "";
 	  
-    var counter = 0; //tblFieldInfo  $("#sort-it")  #sort-it2 
+    var counter = 0; //tblFieldInfo  $("#sort-it")  #sort-it2
+    var dCnt = 1; var mCnt = 1;
     if($("#tblFieldInfo").length)
     { 
     
@@ -345,9 +346,19 @@
       // col_Dim_Measures : dimension1|dimension2|...measure1|measure2 ...
       	    
       if (counter == 0) {
-        col_Dim_Measures = $(this).attr("data-fieldtype");
+	   if($(this).attr("data-fieldtype") == "dimension") {   
+             col_Dim_Measures = "dimension" + dCnt.toString(); dCnt++;
+	   } else { col_Dim_Measures = "measure" + mCnt.toString();  mCnt++; }
+	      
       } else {
-        col_Dim_Measures = col_Dim_Measures + "|" + $(this).attr("data-fieldtype");
+	   if($(this).attr("data-fieldtype") == "dimension") {   
+             col_Dim_Measures = col_Dim_Measures + "|" + "dimension" + dCnt.toString(); 
+             dCnt++;
+	   } else { 
+		   col_Dim_Measures = "measure" + mCnt.toString();  
+		   mCnt++; 
+	   }   
+        //col_Dim_Measures = col_Dim_Measures + "|" + $(this).attr("data-fieldtype");
       }
 	    
       // This handles the column order

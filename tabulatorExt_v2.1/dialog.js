@@ -355,7 +355,7 @@
              col_Dim_Measures = col_Dim_Measures + "|" + "dimension" + dCnt.toString(); 
              dCnt++;
 	   } else { 
-		   col_Dim_Measures = "measure" + mCnt.toString();  
+		   col_Dim_Measures = col_Dim_Measures + "|" + "measure" + mCnt.toString();  
 		   mCnt++; 
 	   }   
         //col_Dim_Measures = col_Dim_Measures + "|" + $(this).attr("data-fieldtype");

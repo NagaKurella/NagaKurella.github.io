@@ -240,11 +240,12 @@
           //alasql('INSERT INTO tblSheetData(Category,Quantity) VALUES("cate1",20) ');
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');
           var insertQry = "";
+          alert(tableData7[0].Category);
           for(var x=0;x<tableData7.length;x++)
           {            
             insertQry = "";
             insertQry = 'INSERT INTO tblSheetData(Category,Manufacturer,SubCategory,Quantity,Sales) VALUES(';
-            insertQry = insertQry + ' "'+tableData7[x][0]+'", "'+tableData7[x].Manufacturer+'", "'+tableData7[x].SubCategory + '", '+tableData7[x].Quantity+', '+tableData7[x].Sales+' )';
+            insertQry = insertQry + ' "'+tableData7[x].Category+'", "'+tableData7[x].Manufacturer+'", "'+tableData7[x].SubCategory + '", '+tableData7[x].Quantity+', '+tableData7[x].Sales+' )';
             alasql(insertQry);
             //alert(tableData7[x].Category);
           }

@@ -46,14 +46,15 @@
       var column_names_array = tableau.extensions.settings.get("column_names").split("|");
       var column_order_array = tableau.extensions.settings.get("column_order").split("|");
       var col_AltNames_array = tableau.extensions.settings.get("col_AltNames").split("|");
+      var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|");	    
       
-      $("#sort-it ol").text("");
-      for (var i = 0; i < column_names_array.length; i++) {
-        //alert(column_names_array[i] + " : " + column_order_array[i]);
-        $("#sort-it ol").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");
-      }
+      //$("#sort-it ol").text("");
+      //for (var i = 0; i < column_names_array.length; i++) {
+      //  //alert(column_names_array[i] + " : " + column_order_array[i]);
+      //  $("#sort-it ol").append("<li><div class='input-field'><input id='" + column_names_array[i] + "' type='text' col_num=" + column_order_array[i] + "><label for=" + column_names_array[i] + "'>" + column_names_array[i] + "</label></div></li>");
+      //}
       
-      alert("before binding table to DIV");  
+      //alert("before binding table to DIV");  
       $("#sort-it2").text("");
       var table_tag = '<table id="tblFieldInfo" class="table table-sortable table-condensed table-bordered table-hover" >';
       table_tag = table_tag + '<thead> <tr> <th># </th> <th> Field Name </th> <th> Alternate Name </th> <th>Field Type </th> </tr> </thead>';
@@ -65,10 +66,10 @@
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
         tr_tag = tr_tag + '<td> <h5><label class= class="'+fieldType_dim_Measure(column_names_array[i]).badgeCSSClassName+'"  >'+column_names_array[i]+'</label></h5> </td>';
-        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" value="'+ col_AltNames_array[i] +'" data-fieldname= "'+column_names_array[i]+'" /> </td>';
+        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" value="'+ col_AltNames_array[i] +'" data-fieldname= "'+column_names_array[i]+'" data-fieldtype= "'+col_d_m_array[i]+'" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
-        alert(tr_tag);
+        //alert(tr_tag);
         table_tag = table_tag + tr_tag;
       }
       table_tag = table_tag + '</tbody>';
@@ -162,15 +163,15 @@
           // For each column we add a list item with an input box and label.
           // Note that this is based on materialisecss.
 		var fieldInfo2 = fieldType_dim_Measure(current_value.dataType);
-          var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + fieldInfo2.fieldType +" ";
-          alert(fieldInfo);
-          $("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
+          //var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + fieldInfo2.fieldType +" ";
+          //alert(fieldInfo);
+          //$("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
           //counter++;
 	
 	  tr_tag = '<tr>';
           tr_tag = tr_tag + '<td> <span>::::</span> '+counter+' </td> ';
           tr_tag = tr_tag + '<td> <h5><label class="'+fieldInfo2.badgeCSSClassName+'" >'+current_value.fieldName+'</label></h5> </td>';
-          tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+counter+'" col_num="' + (counter) + '" class="form-control" value="'+ current_value.fieldName +'" data-fieldname= "'+current_value.fieldName+'"   /> </td>';
+          tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+counter+'" col_num="' + (counter) + '" class="form-control" value="'+ current_value.fieldName +'" data-fieldname= "'+current_value.fieldName+'" data-fieldtype= "'+fieldInfo2+'"  /> </td>';
           tr_tag = tr_tag + '<td> <select id="fldType_'+counter+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
           tr_tag = tr_tag + '</tr>';
           //alert(tr_tag);
@@ -332,12 +333,23 @@
     var column_name = ""; 
     var col_AltNames = "";
     var col_Types = "";
+    var col_Dim_Measures = "";
 	  
     var counter = 0; //tblFieldInfo  $("#sort-it")  #sort-it2 
     if($("#tblFieldInfo").length)
     { 
     
-    $("#tblFieldInfo").find("input").each(function (column) {      
+    $("#tblFieldInfo").find("input").each(function (column) { 
+	    
+      // This handles the columns as dimension or measure
+      // col_Dim_Measures : dimension1|dimension2|...measure1|measure2 ...
+      	    
+      if (counter == 0) {
+        var col_Dim_Measures = $(this).attr("data-fieldtype");
+      } else {
+        col_Dim_Measures = col_Dim_Measures + "|" + $(this).attr("data-fieldtype");
+      }
+	    
       // This handles the column order
       if (counter == 0) {
         column_order = $(this).attr("col_num");
@@ -383,6 +395,7 @@
     tableau.extensions.settings.set("column_order", column_order);
     tableau.extensions.settings.set("column_names", column_name);
     tableau.extensions.settings.set("col_AltNames", col_AltNames);
+    tableau.extensions.settings.set("col_Dim_Measures", col_Dim_Measures);
 
     // Call saveAsync to save the settings before calling closeDialog.
     tableau.extensions.settings.saveAsync().then((currentSettings) => {

@@ -248,7 +248,7 @@
           var crt_tbl_t1_col = "";
           for ( var x=0;x<dimCount;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array2[x] + " STRING, "; }
           for ( var y=0;y<measureCnt;y++) { 
-            var m = y + dimCount;
+            var m = parseInt(y) + parseInt(dimCount);
             alert(" m : " + m);
             crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array2[m] + " REAL, "; 
           }

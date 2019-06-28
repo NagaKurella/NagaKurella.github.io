@@ -246,7 +246,7 @@
           alasql('CREATE TABLE tblSheetData(Category STRING, Manufacturer STRING, SubCategory STRING, Quantity REAL, Sales REAL)'); 
           var crt_tbl_t1 = ' CREATE TABLE tblSheetData( ';
           var crt_tbl_t1_col = "";
-          for ( var x=0;x<dimCount;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[x] + " STRING, "; }
+          for ( var x=0;x<5;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[x] + " STRING, "; }
           for ( var y=0;y<measureCnt;y++) { 
             var m = y + dimCount;
             crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[m] + " REAL, "; 

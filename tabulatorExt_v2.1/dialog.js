@@ -48,6 +48,7 @@
       var col_AltNames_array = tableau.extensions.settings.get("col_AltNames").split("|");
       var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|");	    
       for (var i = 0; i < column_names_array.length; i++) { alert(col_d_m_array[i]); }
+	alert("Dim x Mea : " + tableau.extensions.settings.get("Dimensions_Count") + " x " + tableau.extensions.settings.get("Measures_Count"));	    
       //$("#sort-it ol").text("");
       //for (var i = 0; i < column_names_array.length; i++) {
       //  //alert(column_names_array[i] + " : " + column_order_array[i]);
@@ -407,6 +408,8 @@
     tableau.extensions.settings.set("column_names", column_name);
     tableau.extensions.settings.set("col_AltNames", col_AltNames);
     tableau.extensions.settings.set("col_Dim_Measures", col_Dim_Measures);
+    tableau.extensions.settings.set("Dimensions_Count", dCnt);
+    tableau.extensions.settings.set("Measures_Count", mCnt);	  
 
     // Call saveAsync to save the settings before calling closeDialog.
     tableau.extensions.settings.saveAsync().then((currentSettings) => {

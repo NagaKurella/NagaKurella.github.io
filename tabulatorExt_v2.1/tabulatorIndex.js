@@ -283,7 +283,7 @@
             }
 		      tbl_col_list = tbl_col_list.trim().slice(0, -1);
 		  
-		        for(var x=0;x<2;x++){
+		        for(var x=0;x<tableData7.length;x++){
 			          insertQry = "";
                 insertQry = 'INSERT INTO tblSheetData('+tbl_col_list+') VALUES(';
                 if(parseInt(dimCount)==1) {  
@@ -309,9 +309,11 @@
                 } else if(parseInt(measureCnt)==5) {
                   insertQry = insertQry + ' "'+tableData7[x].measure1+'", "'+tableData7[x].measure2 + '", "'+tableData7[x].measure3 + '", "'+tableData7[x].measure4 + '", "'+tableData7[x].measure + '") ';
                 }
-                alert(insertQry);
-		        }
-          //// alternate code for above block ///////////////
+                //alert(insertQry);
+                alasql(insertQry);
+            }
+           alert(JSON.stringify(alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category')));
+          //// alternate code for above block /////////////// JSON.stringify(p_c_data);
           
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');
           alasql('DROP TABLE IF EXISTS tbl_InData');

@@ -235,7 +235,7 @@
         var column_names_array2 = tableau.extensions.settings.get("column_names").split("|");
         var column_order_array2 = tableau.extensions.settings.get("column_order").split("|");
         var col_AltNames_array2 = tableau.extensions.settings.get("col_AltNames").split("|");
-        var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
+        var col_d_m_array2 = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
         var dimCount = 0, measureCnt = 0;
         dimCount = tableau.extensions.settings.get("Dimensions_Count");
         measureCnt = tableau.extensions.settings.get("Measures_Count");
@@ -246,10 +246,11 @@
           alasql('CREATE TABLE tblSheetData(Category STRING, Manufacturer STRING, SubCategory STRING, Quantity REAL, Sales REAL)'); 
           var crt_tbl_t1 = ' CREATE TABLE tblSheetData( ';
           var crt_tbl_t1_col = "";
-          for ( var x=0;x<dimCount;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[x] + " STRING, "; }
+          for ( var x=0;x<dimCount;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array2[x] + " STRING, "; }
           for ( var y=0;y<measureCnt;y++) { 
             var m = y + dimCount;
-            crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[m] + " REAL, "; 
+            alert(" m : " + m);
+            crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array2[m] + " REAL, "; 
           }
           crt_tbl_t1_col = crt_tbl_t1_col.trim().slice(0, -1);
           crt_tbl_t1 = crt_tbl_t1 + crt_tbl_t1_col + ')';

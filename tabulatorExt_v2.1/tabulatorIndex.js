@@ -231,10 +231,10 @@
         }
 
         /////////// code drill down ////////////////////////////////
-        var column_order = tableau.extensions.settings.get("column_order");
-        var column_names_array = tableau.extensions.settings.get("column_names").split("|");
-        var column_order_array = tableau.extensions.settings.get("column_order").split("|");
-        var col_AltNames_array = tableau.extensions.settings.get("col_AltNames").split("|");
+        //var column_order = tableau.extensions.settings.get("column_order");
+        var column_names_array2 = tableau.extensions.settings.get("column_names").split("|");
+        var column_order_array2 = tableau.extensions.settings.get("column_order").split("|");
+        var col_AltNames_array2 = tableau.extensions.settings.get("col_AltNames").split("|");
         var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
         var dimCount = 0, measureCnt = 0;
         dimCount = tableau.extensions.settings.get("Dimensions_Count");

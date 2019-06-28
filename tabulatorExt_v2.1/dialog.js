@@ -47,7 +47,7 @@
       var column_order_array = tableau.extensions.settings.get("column_order").split("|");
       var col_AltNames_array = tableau.extensions.settings.get("col_AltNames").split("|");
       var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|");	    
-      alert(String( tableau.extensions.settings.get("col_Dim_Measures")));
+      alert( tableau.extensions.settings.get("col_Dim_Measures").toString() );
       //$("#sort-it ol").text("");
       //for (var i = 0; i < column_names_array.length; i++) {
       //  //alert(column_names_array[i] + " : " + column_order_array[i]);

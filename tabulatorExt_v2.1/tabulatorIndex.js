@@ -108,6 +108,7 @@
         // https://tableau.github.io/extensions-api/docs/interfaces/datatable.html#columns
         var data_col = [];
         var column_names = tableau.extensions.settings.get("column_names").split("|");
+        var col_d_m_array1 = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
         for (i = 0; i < column_names.length; i++) {          
           var s1 = column_names[i];
           s1 = s1.replace('-','');
@@ -115,7 +116,7 @@
           s1 = s1.replace('(',''); //s1 = s1.replace('(','[');
           s1 = s1.replace(')',''); //s1 = s1.replace(')',']');
           //data_col.push({ title: column_names[i], field:column_names[i] }); //,headerVertical:true,headerFilter:true
-          data_col.push({ title: s1, field:s1 });
+          data_col.push({ title: s1, field:s1, genericname: col_d_m_array1[i] });
           //data_col.push({ title: column_names[i] });
           //alert(column_names[i]); // ok
           //data_col.push(column_names[i]);
@@ -151,8 +152,9 @@
             //alert(tableData[i][j]);          
            
             //str1 = str1 + " \""+column_names[j].toString() + "\" :  \"" + tableData[i][j].toString() + "\" , "; //// working fine
-            str1 = str1 + " \""+data_col[j].title.toString() + "\" :  \"" + tableData[i][j].toString() + "\" , ";
-            //str1 = str1 + "Col_"+j.toString() +": " + tableData[i][j].toString() + "  , ";
+            //str1 = str1 + " \""+data_col[j].title.toString() + "\" :  \"" + tableData[i][j].toString() + "\" , "; /// working fine
+            str1 = str1 + " \""+data_col[j].genericname.toString() + "\" :  \"" + tableData[i][j].toString() + "\" , ";
+            //str1 = str1 + "Col_"+j.toString() +": " + tableData[i][j].toString() + "  , "; 
           }
           jstr = jstr + " { " + str1.trim().slice(0, -1) + " }, ";
           jstr2 =  ' { ' + str1.trim().slice(0, -1) + ' } ';
@@ -260,6 +262,7 @@
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');
           var insertQry = "";
           alert(tableData7[0].Category);
+          alert(tableData7[0].dimension1);
           for(var x=0;x<tableData7.length;x++)
           {            
             insertQry = "";

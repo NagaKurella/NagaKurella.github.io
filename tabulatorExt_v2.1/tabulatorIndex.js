@@ -231,11 +231,23 @@
         }
 
         /////////// code drill down ////////////////////////////////
-        var dimCount, measureCnt ;
+        var column_order = tableau.extensions.settings.get("column_order");
+        var column_names_array = tableau.extensions.settings.get("column_names").split("|");
+        var column_order_array = tableau.extensions.settings.get("column_order").split("|");
+        var col_AltNames_array = tableau.extensions.settings.get("col_AltNames").split("|");
+        var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
+        var dimCount = 0, measureCnt = 0;
+        dimCount = tableau.extensions.settings.get("Dimensions_Count");
+        measureCnt = tableau.extensions.settings.get("Measures_Count");
         try{
           //alert("In preparing TABLE using ALASQL");
           alasql('DROP TABLE IF EXISTS tblSheetData');
-          alasql('CREATE TABLE tblSheetData(Category STRING, Manufacturer STRING, SubCategory STRING, Quantity REAL, Sales REAL)');                
+          // below code line is hardcoded ; working fine
+          alasql('CREATE TABLE tblSheetData(Category STRING, Manufacturer STRING, SubCategory STRING, Quantity REAL, Sales REAL)'); 
+          var crt_tbl_t1 = " CREATE TABLE tblSheetData( ";
+          var crt_tbl_t1_col = "";
+          for ( var x=0;x<dimCount;x++) { crt_tbl_t1_col = crt_tbl_t1_col + col_d_m_array[x] + " STRING," } 
+          alert(crt_tbl_t1_col);
           //alasql('INSERT INTO tblSheetData(Category,Quantity) VALUES("cate1",10) ');
           //alasql('INSERT INTO tblSheetData(Category,Quantity) VALUES("cate1",20) ');
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');

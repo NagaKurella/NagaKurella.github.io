@@ -347,12 +347,12 @@
       // col_Dim_Measures : dimension1|dimension2|...measure1|measure2 ...
       	    
       if (counter == 0) {
-	   if($(this).attr("data-fieldtype") == "dimension") {   
+	   if($(this).attr("data-fieldtype").toLowerCase().indexOf("dimension") != -1 ) {   
              col_Dim_Measures = "dimension" + dCnt.toString(); dCnt++;
 	   } else { col_Dim_Measures = "measure" + mCnt.toString();  mCnt++; }
 	      
       } else {
-	   if($(this).attr("data-fieldtype") == "dimension") {   
+	   if($(this).attr("data-fieldtype").toLowerCase().indexOf("dimension") != -1) {   
              col_Dim_Measures = col_Dim_Measures + "|" + "dimension" + dCnt.toString(); 
              dCnt++;
 	   } else { 

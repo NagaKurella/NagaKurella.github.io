@@ -286,6 +286,17 @@
 		        for(var x=0;x<2;x++){
 			          insertQry = "";
                 insertQry = 'INSERT INTO tblSheetData('+tbl_col_list+') VALUES(';
+                if(parseInt(dimCount)==1) {  
+                  insertQry = insertQry + ' "'+tableData7[x].dimension1+'", ';
+                } else if(parseInt(dimCount)==2) {  
+                  insertQry = insertQry + ' "'+tableData7[x].dimension1+'", "'+tableData7[x].dimension2 + '", ';               
+                } else if(parseInt(dimCount)==3) {
+                  insertQry = insertQry + ' "'+tableData7[x].dimension1+'", "'+tableData7[x].dimension2 + '", "'+tableData7[x].dimension3 + '", ';
+                } else if(parseInt(dimCount)==4){
+                  insertQry = insertQry + ' "'+tableData7[x].dimension1+'", "'+tableData7[x].dimension2 + '", "'+tableData7[x].dimension3 + '", "'+tableData7[x].dimension4 + '", ';
+                } else if(parseInt(dimCount)==5) {
+                  insertQry = insertQry + ' "'+tableData7[x].dimension1+'", "'+tableData7[x].dimension2 + '", "'+tableData7[x].dimension3 + '", "'+tableData7[x].dimension4 + '", "'+tableData7[x].dimension5 + '", ';
+                }
 				        alert(insertQry);
 		        }
           //// alternate code for above block ///////////////

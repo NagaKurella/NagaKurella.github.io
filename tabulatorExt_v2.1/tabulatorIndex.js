@@ -345,6 +345,10 @@
           //alasql('INSERT INTO tbl_InData(parentID,Category,Quantity,Sales) SELECT NULL, Category, SUM(Quantity) As Quantity, SUM(Sales) As Sales FROM tblSheetData GROUP BY Category')
           //var res = alasql('SELECT Category, SUM(Sales) AS Sales FROM ? GROUP BY Category',[tableData7]);
           //----------insert--1--- alternate--code--block-----------------------------------
+          var m_dim_list = '';
+          for ( var x=0;x<dimCount;x++) { m_dim_list = m_dim_list + col_d_m_array2[x] + ", ";  }
+          m_dim_list = m_dim_list.trim().slice(0, -1);
+
           var Ins_into_gBy1 = 'INSERT INTO tbl_InData(parentID,dimension1,';
           var m_col_list = ''; var m_col_list_with_AGG = ''; var m_col_list_with_tbl_InData2 = ''; var m_col_list_with_tbl_InData3 = '';
           for( var y=0;y<measureCnt;y++) { 
@@ -365,7 +369,7 @@
           var q1 = Ins_into_gBy1 + Ins_Val_gBy1; 
           //alert(q1);
           alasql(q1);
-          var q1_op = alasql('SELECT Id, parentID, dimension1, measure1, measure2 FROM tbl_InData'); //// working fine
+          //var q1_op = alasql('SELECT Id, parentID, dimension1, measure1, measure2 FROM tbl_InData'); //// working fine
           //alert(JSON.stringify(q1_op));  //// working fine
           //----------insert--1--- alternate--code--block--------end---------------------------
 
@@ -436,7 +440,8 @@
           //var p_c_data = alasql("SELECT Id, Category, SubCategory, parentID, Quantity, Sales FROM tbl_InData")
 
           /////// updated 
-          var p_c_data = alasql("SELECT Id, dimension1, dimension2, parentID, measure1, measure2 FROM tbl_InData")
+          //var p_c_data = alasql("SELECT Id, dimension1, dimension2, parentID, measure1, measure2 FROM tbl_InData")
+          var p_c_data = alasql("SELECT Id, parentID, " + m_dim_list + " , " + m_col_list + " FROM tbl_InData")
 
           //document.getElementById("t1").innerHTML = JSON.stringify(p_c_data);
           //document.getElementById("t1").innerHTML = qry3;
@@ -473,7 +478,7 @@
               //{title:"Id", field:"Id", width:200, responsive:0}, //never hide this column
               {title:"Category", field:"dimension1", width:150, responsive:0},
               {title:"Quantity", field:"measure1"},
-              {title:"Sales", field:"measure2"},
+              //{title:"Sales", field:"measure2"},
               ],
             });
 

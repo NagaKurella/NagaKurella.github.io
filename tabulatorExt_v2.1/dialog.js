@@ -165,7 +165,7 @@
           // Note that this is based on materialisecss.
 		var fieldInfo2 = fieldType_dim_Measure(current_value.dataType);
           var fieldInfo = " Name : " + current_value.fieldName + "; DataType: " + fieldInfo2.fieldType +" ";
-          alert(fieldInfo);
+          //alert(fieldInfo);
           //$("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
           //counter++;
 	
@@ -236,7 +236,7 @@
 
   // This function closes the dialog box without.
   function closeDialog() {
-    alert("in closeDialog - definition ");
+    //alert("in closeDialog - definition ");
     tableau.extensions.ui.closeDialog("10");
   } // end of close button
 
@@ -407,7 +407,7 @@
     tableau.extensions.settings.set("column_order", column_order);
     tableau.extensions.settings.set("column_names", column_name);
     tableau.extensions.settings.set("col_AltNames", col_AltNames);
-	  alert("before saving... " + col_Dim_Measures);
+	  //alert("before saving... " + col_Dim_Measures);
     tableau.extensions.settings.set("col_Dim_Measures", col_Dim_Measures);
     tableau.extensions.settings.set("Dimensions_Count", dCnt);
     tableau.extensions.settings.set("Measures_Count", mCnt);	  

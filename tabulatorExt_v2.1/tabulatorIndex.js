@@ -319,17 +319,20 @@
           alasql('DROP TABLE IF EXISTS tbl_InData');
           //alasql('CREATE TABLE tbl_InData(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
           var crt_tbl_InData = ' CREATE TABLE tbl_InData( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )';
-          alert(crt_tbl_InData);
+          //alert(crt_tbl_InData);
+          alasql(crt_tbl_InData);
 
           alasql('DROP TABLE IF EXISTS tbl_InData2');
           //alasql('CREATE TABLE tbl_InData2(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
           var crt_tbl_InData2 = ' CREATE TABLE tbl_InData2( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )';
-          alert(crt_tbl_InData2);
+          //alert(crt_tbl_InData2);
+          alasql(crt_tbl_InData2);
 
           alasql('DROP TABLE IF EXISTS tbl_InData3');
           //alasql('CREATE TABLE tbl_InData3(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
           var crt_tbl_InData3 = ' CREATE TABLE tbl_InData3( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )'; 
-          alert(crt_tbl_InData3);
+          //alert(crt_tbl_InData3);
+          alasql(crt_tbl_InData3);
 
           //alasql('INSERT INTO tbl_InData VALUES (1,NULL,"Technology","Tech-1","Tech-2",100.23,200 )');   // insert option 1
           //alasql('INSERT INTO tbl_InData(parentID,Category) VALUES (1,"Technology")');    // insert option 2
@@ -338,9 +341,20 @@
           //alasql('CREATE TABLE tbl_InData4(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
           alasql('CREATE TABLE tbl_InData4(Id INT IDENTITY(1,1), Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
 
-          //insert--1---
-          alasql('INSERT INTO tbl_InData(parentID,Category,Quantity,Sales) SELECT NULL, Category, SUM(Quantity) As Quantity, SUM(Sales) As Sales FROM tblSheetData GROUP BY Category')
+          //insert--1--- below Insert into codeline working fine ; making it dynamic 
+          //alasql('INSERT INTO tbl_InData(parentID,Category,Quantity,Sales) SELECT NULL, Category, SUM(Quantity) As Quantity, SUM(Sales) As Sales FROM tblSheetData GROUP BY Category')
           //var res = alasql('SELECT Category, SUM(Sales) AS Sales FROM ? GROUP BY Category',[tableData7]);
+          //----------insert--1--- alternate--code--block-----------------------------------
+          var Ins_into_gBy1 = 'INSERT INTO tbl_InData(parentID,dimension1,';
+          var m_col_list = '';
+          for( var y=0;y<measureCnt;y++) { 
+            var m = parseInt(y) + parseInt(dimCount);            
+            m_col_list = m_col_list + col_d_m_array2[m] + ", "; 
+          }
+          m_col_list = m_col_list.trim().slice(0, -1);
+          Ins_into_gBy1 = Ins_into_gBy1 + m_col_list + ')';
+          alert(Ins_into_gBy1);
+          //----------insert--1--- alternate--code--block-----------------------------------
 
           //insert--2---
           alasql('INSERT INTO tbl_InData2(Category, SubCategory, Quantity, Sales) \

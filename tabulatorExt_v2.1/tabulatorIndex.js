@@ -358,9 +358,11 @@
           //alert(Ins_into_gBy1);
           var Ins_Val_gBy1 = ' SELECT NULL, dimension1, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1';
           //alert(Ins_Val_gBy1);
-          var q1 = Ins_into_gBy1 + Ins_Val_gBy1; alert(q1);
-          
-          //alert(JSON.stringify(alasql(Ins_into_gBy1 + Ins_Val_gBy1)));
+          var q1 = Ins_into_gBy1 + Ins_Val_gBy1; 
+          //alert(q1);
+          alasql(q1);
+          var q1_op = 'SELECT Id, parentID, dimension1, measure1, measure2 FROM tblSheetData';
+          alert(JSON.stringify(q1_op));
           //----------insert--1--- alternate--code--block-----------------------------------
 
           //insert--2---

@@ -339,7 +339,13 @@
           
           alasql('DROP TABLE IF EXISTS tbl_InData4');
           //alasql('CREATE TABLE tbl_InData4(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
-          alasql('CREATE TABLE tbl_InData4(Id INT IDENTITY(1,1), Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          //alasql('CREATE TABLE tbl_InData4(Id INT IDENTITY(1,1), Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          var crt_tbl_InData4 = ' CREATE TABLE tbl_InData4( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )';
+          alasql(crt_tbl_InData4);
+
+          alasql('DROP TABLE IF EXISTS tbl_InData5');
+          var crt_tbl_InData5 = ' CREATE TABLE tbl_InData5( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )';
+          alasql(crt_tbl_InData5);
 
           //insert--1--- below Insert into codeline working fine ; making it dynamic 
           //alasql('INSERT INTO tbl_InData(parentID,Category,Quantity,Sales) SELECT NULL, Category, SUM(Quantity) As Quantity, SUM(Sales) As Sales FROM tblSheetData GROUP BY Category')
@@ -348,20 +354,31 @@
           var m_dim_list = '';
           for ( var x=0;x<dimCount;x++) { m_dim_list = m_dim_list + col_d_m_array2[x] + ", ";  }
           m_dim_list = m_dim_list.trim().slice(0, -1);
+          
+          var m_col_list = ''; 
+          var m_col_list_with_AGG = ''; 
+          var m_col_list_with_tbl_InData2 = ''; 
+          var m_col_list_with_tbl_InData3 = '';
+          var m_col_list_with_tbl_InData4 = '';
+          var m_col_list_with_tbl_InData5 = '';
 
-          var Ins_into_gBy1 = 'INSERT INTO tbl_InData(parentID,dimension1,';
-          var m_col_list = ''; var m_col_list_with_AGG = ''; var m_col_list_with_tbl_InData2 = ''; var m_col_list_with_tbl_InData3 = '';
           for( var y=0;y<measureCnt;y++) { 
             var m = parseInt(y) + parseInt(dimCount);            
             m_col_list = m_col_list + col_d_m_array2[m] + ", ";
             m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2 + 'tbl_InData2.'+col_d_m_array2[m] + ", ";
             m_col_list_with_tbl_InData3 = m_col_list_with_tbl_InData3 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
+            m_col_list_with_tbl_InData4 = m_col_list_with_tbl_InData4 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
+            m_col_list_with_tbl_InData5 = m_col_list_with_tbl_InData5 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
             m_col_list_with_AGG = m_col_list_with_AGG + ' SUM('+ col_d_m_array2[m] + ') As '+col_d_m_array2[m]+', ';
           }
           m_col_list = m_col_list.trim().slice(0, -1);
           m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2.trim().slice(0, -1);
           m_col_list_with_tbl_InData3 = m_col_list_with_tbl_InData3.trim().slice(0, -1);
+          m_col_list_with_tbl_InData4 = m_col_list_with_tbl_InData4.trim().slice(0, -1);
+          m_col_list_with_tbl_InData5 = m_col_list_with_tbl_InData5.trim().slice(0, -1);
           m_col_list_with_AGG = m_col_list_with_AGG.trim().slice(0, -1);
+
+          var Ins_into_gBy1 = 'INSERT INTO tbl_InData(parentID,dimension1,';
           Ins_into_gBy1 = Ins_into_gBy1 + m_col_list + ')';
           //alert(Ins_into_gBy1);
           var Ins_Val_gBy1 = ' SELECT NULL, dimension1, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1';
@@ -417,19 +434,38 @@
           //var p_c_data = alasql(qry3);
           */
           //----------insert--3---alternate--code--block--------start-----(3dim's, all measures)----------------------
-          var Ins_into_tbl_InData3 = 'INSERT INTO tbl_InData3(dimension1,dimension2,dimension3,';
-              Ins_into_tbl_InData3 = Ins_into_tbl_InData3 + m_col_list + ') ';
-          var Ins_Val_tbl_InData3 = ' SELECT dimension1, dimension2, dimension3, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1, dimension2, dimension3 ';
-          var q3 = Ins_into_tbl_InData3 + Ins_Val_tbl_InData3; 
-          alasql(q3);
-          //var q3_op = alasql('SELECT Id, parentID, dimension1, dimension2, dimension3, measure1, measure2 FROM tbl_InData3'); //// working fine           
-          //document.getElementById("t1").innerHTML = JSON.stringify(q3_op);  //// working fine
-          var Ins_into_gBy3 = 'INSERT INTO tbl_InData(parentID,dimension1,'+m_col_list + ') ';
-          var Ins_Val_gBy3 =  ' SELECT  tbl_InData.Id AS parentID, tbl_InData3.dimension3 As dimension1,' + m_col_list_with_tbl_InData3 + ' FROM tbl_InData3 ';
-              Ins_Val_gBy3 = Ins_Val_gBy3 + ' LEFT JOIN tbl_InData ON tbl_InData3.dimension2 = tbl_InData.dimension2 ';
-          var q3_2 = Ins_into_gBy3 + Ins_Val_gBy3;
-          alasql(q3_2);     
+          if(3<= dimCount){
+            var Ins_into_tbl_InData3 = 'INSERT INTO tbl_InData3(dimension1,dimension2,dimension3,';
+                Ins_into_tbl_InData3 = Ins_into_tbl_InData3 + m_col_list + ') ';
+            var Ins_Val_tbl_InData3 = ' SELECT dimension1, dimension2, dimension3, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1, dimension2, dimension3 ';
+            var q3 = Ins_into_tbl_InData3 + Ins_Val_tbl_InData3; 
+            alasql(q3);
+            //var q3_op = alasql('SELECT Id, parentID, dimension1, dimension2, dimension3, measure1, measure2 FROM tbl_InData3'); //// working fine           
+            //document.getElementById("t1").innerHTML = JSON.stringify(q3_op);  //// working fine
+            var Ins_into_gBy3 = 'INSERT INTO tbl_InData(parentID,dimension1,'+m_col_list + ') ';
+            var Ins_Val_gBy3 =  ' SELECT  tbl_InData.Id AS parentID, tbl_InData3.dimension3 As dimension1,' + m_col_list_with_tbl_InData3 + ' FROM tbl_InData3 ';
+                Ins_Val_gBy3 = Ins_Val_gBy3 + ' LEFT JOIN tbl_InData ON tbl_InData3.dimension2 = tbl_InData.dimension2 ';
+            var q3_2 = Ins_into_gBy3 + Ins_Val_gBy3;
+            alasql(q3_2);
+          }     
           //----------insert--3---alternate--code--block--------end-----(3dim's, all measures)----------------------
+
+          //----------insert--4---alternate--code--block--------start-----(4dim's, all measures)----------------------
+          if(4<= dimCount){
+            var Ins_into_tbl_InData4 = 'INSERT INTO tbl_InData4(dimension1,dimension2,dimension3,dimension4,';
+                Ins_into_tbl_InData4 = Ins_into_tbl_InData4 + m_col_list + ') ';
+            var Ins_Val_tbl_InData4 = ' SELECT dimension1, dimension2, dimension3, dimension4, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1, dimension2, dimension3, dimension4 ';
+            var q4 = Ins_into_tbl_InData4 + Ins_Val_tbl_InData4; 
+            alasql(q4);
+            //var q3_op = alasql('SELECT Id, parentID, dimension1, dimension2, dimension3, measure1, measure2 FROM tbl_InData3'); //// working fine           
+            //document.getElementById("t1").innerHTML = JSON.stringify(q3_op);  //// working fine
+            var Ins_into_gBy4 = 'INSERT INTO tbl_InData(parentID,dimension1,'+m_col_list + ') ';
+            var Ins_Val_gBy4 =  ' SELECT  tbl_InData.Id AS parentID, tbl_InData4.dimension4 As dimension1,' + m_col_list_with_tbl_InData4 + ' FROM tbl_InData4 ';
+                Ins_Val_gBy4 = Ins_Val_gBy4 + ' LEFT JOIN tbl_InData ON tbl_InData4.dimension3 = tbl_InData.dimension3 ';
+            var q4_2 = Ins_into_gBy4 + Ins_Val_gBy4;
+            alasql(q4_2);
+          }    
+          //----------insert--4---alternate--code--block--------end-----(4dim's, all measures)----------------------
 
 
 

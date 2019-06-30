@@ -367,8 +367,8 @@
             m_col_list = m_col_list + col_d_m_array2[m] + ", ";
             m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2 + 'tbl_InData2.'+col_d_m_array2[m] + ", ";
             m_col_list_with_tbl_InData3 = m_col_list_with_tbl_InData3 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
-            m_col_list_with_tbl_InData4 = m_col_list_with_tbl_InData4 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
-            m_col_list_with_tbl_InData5 = m_col_list_with_tbl_InData5 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
+            m_col_list_with_tbl_InData4 = m_col_list_with_tbl_InData4 + 'tbl_InData4.'+col_d_m_array2[m] + ", ";
+            m_col_list_with_tbl_InData5 = m_col_list_with_tbl_InData5 + 'tbl_InData5.'+col_d_m_array2[m] + ", ";
             m_col_list_with_AGG = m_col_list_with_AGG + ' SUM('+ col_d_m_array2[m] + ') As '+col_d_m_array2[m]+', ';
           }
           m_col_list = m_col_list.trim().slice(0, -1);

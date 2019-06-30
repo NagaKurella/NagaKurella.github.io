@@ -346,14 +346,19 @@
           //var res = alasql('SELECT Category, SUM(Sales) AS Sales FROM ? GROUP BY Category',[tableData7]);
           //----------insert--1--- alternate--code--block-----------------------------------
           var Ins_into_gBy1 = 'INSERT INTO tbl_InData(parentID,dimension1,';
-          var m_col_list = '';
+          var m_col_list = ''; var m_col_list_with_AGG = '';
           for( var y=0;y<measureCnt;y++) { 
             var m = parseInt(y) + parseInt(dimCount);            
             m_col_list = m_col_list + col_d_m_array2[m] + ", "; 
+            m_col_list_with_AGG = m_col_list_with_AGG + ' SUM('+ col_d_m_array2[m] + ') As '+col_d_m_array2[m]+', ';
           }
           m_col_list = m_col_list.trim().slice(0, -1);
+          m_col_list_with_AGG = m_col_list_with_AGG.trim().slice(0, -1);
           Ins_into_gBy1 = Ins_into_gBy1 + m_col_list + ')';
-          alert(Ins_into_gBy1);
+          //alert(Ins_into_gBy1);
+          var Ins_Val_gBy1 = ' SELECT NULL, dimension1, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1';
+          //alert(Ins_Val_gBy1);
+          alert(JSON.stringify(alasql(Ins_into_gBy1 + Ins_Val_gBy1)));
           //----------insert--1--- alternate--code--block-----------------------------------
 
           //insert--2---

@@ -346,13 +346,15 @@
           //var res = alasql('SELECT Category, SUM(Sales) AS Sales FROM ? GROUP BY Category',[tableData7]);
           //----------insert--1--- alternate--code--block-----------------------------------
           var Ins_into_gBy1 = 'INSERT INTO tbl_InData(parentID,dimension1,';
-          var m_col_list = ''; var m_col_list_with_AGG = '';
+          var m_col_list = ''; var m_col_list_with_AGG = ''; var m_col_list_with_tbl_InData2 = '';
           for( var y=0;y<measureCnt;y++) { 
             var m = parseInt(y) + parseInt(dimCount);            
-            m_col_list = m_col_list + col_d_m_array2[m] + ", "; 
+            m_col_list = m_col_list + col_d_m_array2[m] + ", ";
+            m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2 + 'tbl_InData2.'+col_d_m_array2[m] + ", ";
             m_col_list_with_AGG = m_col_list_with_AGG + ' SUM('+ col_d_m_array2[m] + ') As '+col_d_m_array2[m]+', ';
           }
           m_col_list = m_col_list.trim().slice(0, -1);
+          m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2.trim().slice(0, -1);
           m_col_list_with_AGG = m_col_list_with_AGG.trim().slice(0, -1);
           Ins_into_gBy1 = Ins_into_gBy1 + m_col_list + ')';
           //alert(Ins_into_gBy1);
@@ -377,14 +379,24 @@
           alasql(qry2);
           //var p_c_data = alasql("SELECT Id, Category, SubCategory, Manufacturer, parentID, Quantity, Sales FROM tbl_InData")
           */
-          //----------insert--2---alternate--code--block--------start-----tbl_InData2(2dim's, all measures)----------------------
+          //----------insert--2---alternate--code--block--------start-----(2dim's, all measures)----------------------
           var Ins_into_tbl_InData2 = 'INSERT INTO tbl_InData2(dimension1,dimension2,';
               Ins_into_tbl_InData2 = Ins_into_tbl_InData2 + m_col_list + ') ';
           var Ins_Val_tbl_InData2 = ' SELECT dimension1, dimension2, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1, dimension2 ';
           var q2 = Ins_into_tbl_InData2 + Ins_Val_tbl_InData2; 
           alasql(q2);
-          var q2_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData2');           
-          alert(JSON.stringify(q2_op));  //// working fine
+          //var q2_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData2'); //// working fine           
+          //alert(JSON.stringify(q2_op));  //// working fine
+          var Ins_into_gBy2 = 'INSERT INTO tbl_InData(parentID,dimension1,dimension2,';
+              Ins_into_gBy2 = Ins_into_gBy2 + m_col_list + ')';
+          var Ins_Val_gBy2 = 'SELECT tbl_InData.Id AS parentID, tbl_InData2.dimension2 AS dimension1, tbl_InData2.dimension2, ' + m_col_list_with_tbl_InData2 + ' FROM ';
+             //m_col_list_with_tbl_InData2 ==> tbl_InData2.Quantity, tbl_InData2.Sales FROM
+             Ins_Val_gBy2 = Ins_Val_gBy2 +  ' tbl_InData2 LEFT OUTER JOIN tbl_InData ON tbl_InData2.dimension1 = tbl_InData.dimension1 ';
+          var q2_2 = Ins_into_gBy2 + Ins_Val_gBy2;
+          alasql(q2_2);
+          var q2_2_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData'); //// working fine           
+          //alert(JSON.stringify(q2_2_op));  //// working fine
+          document.getElementById("t1").innerHTML = JSON.stringify(q2_2_op);
           //----------insert--2---alternate--code--block--------end-----------------------------
 
 

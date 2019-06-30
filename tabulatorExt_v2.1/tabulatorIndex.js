@@ -477,7 +477,7 @@
               columns:[
                 //{title:"Id", field:"Id", width:200, responsive:0}, //never hide this column
                 {title:data_col[0].title, field:"dimension1", width:150, responsive:0},
-                {title:"Quantity", field:"Quantity"},
+                {title:"Quantity", field:"measure1"},
                 //{title:"Sales", field:"Sales"},
                 ],
             });

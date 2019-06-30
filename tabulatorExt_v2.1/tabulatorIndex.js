@@ -469,17 +469,20 @@
             });
             */
 
+            var tabulator_columns = [];
+            tabulator_columns.push({title:data_col[0].title, field:"dimension1"});
+            for(var y=0;y<measureCnt;y++) { 
+              var m = parseInt(y) + parseInt(dimCount);
+              tabulator_columns.push({title:col_AltNames_array2[m], field:col_d_m_array2[m]});              
+            }
+
+
             var table = new Tabulator("#example-table", {
               height:"311px",
               data:tableDataNested3,
               dataTree:true,
               dataTreeStartExpanded:false,   // dataTreeStartExpanded:true,
-              columns:[
-                //{title:"Id", field:"Id", width:200, responsive:0}, //never hide this column
-                {title:data_col[0].title, field:"dimension1"},
-                {title:"Quantity", field:"measure1"},
-                //{title:"Sales", field:"Sales"},
-                ],
+              columns: tabulator_columns,
             });
 
           //document.getElementById("t1").innerHTML = JSON.stringify(worksheetData);

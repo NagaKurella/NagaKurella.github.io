@@ -356,6 +356,7 @@
           }
           m_col_list = m_col_list.trim().slice(0, -1);
           m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2.trim().slice(0, -1);
+          m_col_list_with_tbl_InData3 = m_col_list_with_tbl_InData3.trim().slice(0, -1);
           m_col_list_with_AGG = m_col_list_with_AGG.trim().slice(0, -1);
           Ins_into_gBy1 = Ins_into_gBy1 + m_col_list + ')';
           //alert(Ins_into_gBy1);

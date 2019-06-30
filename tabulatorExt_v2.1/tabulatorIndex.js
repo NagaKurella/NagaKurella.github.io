@@ -394,15 +394,13 @@
              Ins_Val_gBy2 = Ins_Val_gBy2 +  ' tbl_InData2 LEFT OUTER JOIN tbl_InData ON tbl_InData2.dimension1 = tbl_InData.dimension1 ';
           var q2_2 = Ins_into_gBy2 + Ins_Val_gBy2;
           alasql(q2_2);
-          var q2_2_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData'); //// working fine           
+          //var q2_2_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData'); //// working fine           
           //alert(JSON.stringify(q2_2_op));  //// working fine
-          document.getElementById("t1").innerHTML = JSON.stringify(q2_2_op);
-          //----------insert--2---alternate--code--block--------end-----------------------------
-
-
-          //alasql("SELECT Id, ")
+          //document.getElementById("t1").innerHTML = JSON.stringify(q2_2_op); //// working fine 
+          //----------insert--2---alternate--code--block--------end---------(2dim's, all measures)-------------------------          
 
           //insert--3--
+          /*
           alasql('INSERT INTO tbl_InData3(Category, SubCategory, Manufacturer, Quantity, Sales) \
                      SELECT Category, SubCategory, Manufacturer, SUM(Quantity) As Quantity, SUM(Sales) AS Sales FROM tblSheetData GROUP BY Category, SubCategory, Manufacturer ');
           //var qry3 = '';
@@ -411,6 +409,19 @@
               qry3 = qry3 + '  LEFT JOIN tbl_InData ON tbl_InData3.SubCategory = tbl_InData.SubCategory ';    // tbl_InData.Category
           alasql(qry3);    //tbl_InData3.Manufacturer AS Category
           //var p_c_data = alasql(qry3);
+          */
+          //----------insert--3---alternate--code--block--------start-----(3dim's, all measures)----------------------
+          var Ins_into_tbl_InData3 = 'INSERT INTO tbl_InData3(dimension1,dimension2,dimension3,';
+              Ins_into_tbl_InData3 = Ins_into_tbl_InData3 + m_col_list + ') ';
+          var Ins_Val_tbl_InData3 = ' SELECT dimension1, dimension2, dimension3, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1, dimension2, dimension3 ';
+          var q3 = Ins_into_tbl_InData3 + Ins_Val_tbl_InData3; 
+          alasql(q3);
+          var q3_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData3'); //// working fine           
+          document.getElementById("t1").innerHTML = JSON.stringify(q3_op);  //// working fine
+
+          //----------insert--3---alternate--code--block--------end-----(3dim's, all measures)----------------------
+
+
 
           //var p_c_data = alasql("SELECT Id, Category, SubCategory, Manufacturer, Quantity, Sales FROM tbl_InData4")
           //var p_c_data = alasql("SELECT Id, Category, SubCategory, Manufacturer, parentID, Quantity, Sales FROM tbl_InData3") // data is coming 

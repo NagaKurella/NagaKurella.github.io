@@ -361,7 +361,7 @@
           var q1 = Ins_into_gBy1 + Ins_Val_gBy1; 
           //alert(q1);
           alasql(q1);
-          var q1_op = alasql('SELECT Id, parentID, dimension1, measure1, measure2 FROM tblSheetData');
+          var q1_op = alasql('SELECT Id, parentID, dimension1, measure1, measure2 FROM tbl_InData');
           alert(JSON.stringify(q1_op));
           //----------insert--1--- alternate--code--block-----------------------------------
 

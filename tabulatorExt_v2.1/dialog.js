@@ -107,6 +107,9 @@
     //  columnsUpdate();
     //});
 
+    $("input[name='tabulatorType']").val(tableau.extensions.settings.get("tabulator_Type"));
+
+    
 
     //$("#max_no_records").val(tableau.extensions.settings.get("max_no_records"));
     $("#optradio_theme").val(tableau.extensions.settings.get("optradio_theme"));
@@ -156,7 +159,7 @@
         $("#sort-it ol").text("");
         var counter = 1;
 	      
-	$("#sort-it2").text("");      
+	      $("#sort-it2").text("");      
        var table_tag = '<table id="tblFieldInfo" class="table table-sortable table-condensed table-bordered table-hover" >';
        table_tag = table_tag + '<thead> <tr> <th># </th> <th> Field Name </th> <th> Alternate Name </th> <th>Field Type </th> </tr> </thead>';
        table_tag = table_tag + '<tbody>';
@@ -253,6 +256,8 @@
     //tableau.extensions.settings.set("underlying", $("#underlying").val());
 
     tableau.extensions.settings.set("optradio_theme", $("#optradio_theme").val());
+
+    tableau.extensions.settings.set("tabulator_Type", $("input[name='tabulatorType']:checked").val());
 
     // Create a string which will hold the datatable.net css options called tableClass.
     // Also saves the individual Y and N so that we can restore the settings when you

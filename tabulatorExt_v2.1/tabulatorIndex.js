@@ -232,6 +232,23 @@
 
         }
 
+        var tabulator_tbl_type = tableau.extensions.settings.get("tabulator_Type");
+        if(tabulator_tbl_type == "tabulator_grid"){
+              var table = new Tabulator("#example-table", {
+                height:370, // set height of table to enable virtual DOM
+                data:tableData7, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)
+                autoColumns:true, 
+                //columns:data_col,
+                layout:"fitColumns", //fit columns to width of table (optional)
+                pagination:"local",
+                paginationSize:10,
+                paginationSizeSelector:[10, 20, 30, 40, 50],                              
+              });
+        }
+        else {
+
+        
+
         /////////// code drill down ////////////////////////////////
         //var column_order = tableau.extensions.settings.get("column_order");
         var column_names_array2 = tableau.extensions.settings.get("column_names").split("|");
@@ -594,6 +611,9 @@
           //document.getElementById("error").innerHTML = err.message;
         }
         /////////// code drill down ////////////////////////////////
+
+      }
+
 
       })
     } ///////////// end of [else block] of Summary data 

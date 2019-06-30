@@ -258,12 +258,20 @@
     tableau.extensions.settings.set("optradio_theme", $("#optradio_theme").val());
 
     var tabulator_GRID_type = '';
-    var radioButtons = document.getElementsByName("tabulatorType");
+    /*var radioButtons = document.getElementsByName("tabulatorType");
     for (var i = 0; i < radioButtons.length; i++) {
         if (radioButtons[i].checked) {
           tabulator_GRID_type = radioButtons[i].value;
       }
-    }
+    }*/
+    $("input[name='tabulatorType']").each(function() {
+      alert($(this).val());
+
+      if ($(this).val() == isactive) {
+        $(this).prop("checked", "checked");
+      }
+      
+    });
     alert(tabulator_GRID_type);
 
     alert(" In saving .... " + $('input[name=tabulatorType]:checked').val());

@@ -480,12 +480,12 @@
           //var p_c_data = alasql("SELECT Id, dimension1, dimension2, parentID, measure1, measure2 FROM tbl_InData")
           var p_c_data = alasql("SELECT Id, parentID, " + m_dim_list + " , " + m_col_list + " FROM tbl_InData")
 
-          //document.getElementById("t1").innerHTML = JSON.stringify(p_c_data);
+          document.getElementById("t1").innerHTML = JSON.stringify(p_c_data);
           //document.getElementById("t1").innerHTML = qry3;
           
           //// now, convert parent&child structure data into proper JSON parent child format
           var str1 = JSON.stringify(convert_parent_C(p_c_data));
-          str1 = str1.replace('{"_children":',''); 
+          str1 = str1.replace('{"_children":','');  /////// first occurance replace only
           str1 = str1.slice(0, -1);  ////// trim last character }
           var str2 = replaceAll(str1,',"_children":[]','');
           //document.getElementById("t1").innerHTML = str2;

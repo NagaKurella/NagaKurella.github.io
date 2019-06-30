@@ -474,7 +474,12 @@
               data:tableDataNested3,
               dataTree:true,
               dataTreeStartExpanded:false,   // dataTreeStartExpanded:true,
-              columns: data_col,
+              columns:[
+                //{title:"Id", field:"Id", width:200, responsive:0}, //never hide this column
+                {title:data_col[0].title, field:"dimension1", width:150, responsive:0},
+                {title:"Quantity", field:"Quantity"},
+                //{title:"Sales", field:"Sales"},
+                ],
             });
 
           //document.getElementById("t1").innerHTML = JSON.stringify(worksheetData);

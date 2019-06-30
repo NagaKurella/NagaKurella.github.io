@@ -468,7 +468,7 @@
             //var q3_op = alasql('SELECT Id, parentID, dimension1, dimension2, dimension3, measure1, measure2 FROM tbl_InData3'); //// working fine           
             //document.getElementById("t1").innerHTML = JSON.stringify(q3_op);  //// working fine
             var Ins_into_gBy4 = 'INSERT INTO tbl_InData(parentID,dimension1,dimension2,dimension3,dimension4,'+m_col_list + ') ';  //// dimension3
-            var Ins_Val_gBy4 =  ' SELECT tbl_InData.Id AS parentID, tbl_InData4.dimension4 As dimension1, tbl_InData4.dimension2,tbl_InData4.dimension3,tbl_InData4.dimension4, ' 
+            var Ins_Val_gBy4 =  ' SELECT tbl_InData.Id AS parentID, tbl_InData4.dimension4 As dimension1, tbl_InData4.dimension2, tbl_InData4.dimension3, tbl_InData4.dimension4, ' 
                                                            + m_col_list_with_tbl_InData4 + ' FROM tbl_InData4 ';
                 Ins_Val_gBy4 = Ins_Val_gBy4 + ' LEFT JOIN tbl_InData ON tbl_InData4.dimension3 = tbl_InData.dimension3 ';
             var q4_2 = Ins_into_gBy4 + Ins_Val_gBy4;
@@ -482,8 +482,8 @@
             var Ins_Val_tbl_InData5 = ' SELECT dimension1, dimension2, dimension3, dimension4, dimension5, ' + m_col_list_with_AGG + ' FROM tblSheetData '
                                         + ' GROUP BY dimension1, dimension2, dimension3, dimension4, dimension5';
             var q5 = Ins_into_tbl_InData5 + Ins_Val_tbl_InData5;
-            alert(q5); 
-            //alasql(q5);
+            //alert(q5); 
+            alasql(q5);
             
             var Ins_into_gBy5 = 'INSERT INTO tbl_InData(parentID,dimension1,dimension2,dimension3,dimension4,dimension5,'+m_col_list + ') ';  
             var Ins_Val_gBy5 =  ' SELECT tbl_InData.Id AS parentID, tbl_InData5.dimension5 As dimension1, tbl_InData5.dimension2, tbl_InData5.dimension3, '

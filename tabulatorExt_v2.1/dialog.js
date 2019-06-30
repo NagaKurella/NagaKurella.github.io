@@ -46,9 +46,11 @@
       var column_names_array = tableau.extensions.settings.get("column_names").split("|");
       var column_order_array = tableau.extensions.settings.get("column_order").split("|");
       var col_AltNames_array = tableau.extensions.settings.get("col_AltNames").split("|");
-      var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|");	    
-      for (var i = 0; i < column_names_array.length; i++) { alert(col_d_m_array[i]); }
-	alert("Dim x Mea : " + tableau.extensions.settings.get("Dimensions_Count") + " x " + tableau.extensions.settings.get("Measures_Count"));	    
+      var col_d_m_array = tableau.extensions.settings.get("col_Dim_Measures").split("|");
+
+      //for (var i = 0; i < column_names_array.length; i++) { alert(col_d_m_array[i]); }
+      //alert("Dim x Mea : " + tableau.extensions.settings.get("Dimensions_Count") + " x " + tableau.extensions.settings.get("Measures_Count"));
+          
       //$("#sort-it ol").text("");
       //for (var i = 0; i < column_names_array.length; i++) {
       //  //alert(column_names_array[i] + " : " + column_order_array[i]);

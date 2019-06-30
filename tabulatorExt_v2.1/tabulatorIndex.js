@@ -474,9 +474,7 @@
               data:tableDataNested3,
               dataTree:true,
               dataTreeStartExpanded:false,   // dataTreeStartExpanded:true,
-              columns: [
-                {title:data_col.title, field:data_col.title}, 
-              ],
+              columns: data_col,
             });
 
           //document.getElementById("t1").innerHTML = JSON.stringify(worksheetData);

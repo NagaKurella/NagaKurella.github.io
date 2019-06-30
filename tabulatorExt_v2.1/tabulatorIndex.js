@@ -346,11 +346,12 @@
           //var res = alasql('SELECT Category, SUM(Sales) AS Sales FROM ? GROUP BY Category',[tableData7]);
           //----------insert--1--- alternate--code--block-----------------------------------
           var Ins_into_gBy1 = 'INSERT INTO tbl_InData(parentID,dimension1,';
-          var m_col_list = ''; var m_col_list_with_AGG = ''; var m_col_list_with_tbl_InData2 = '';
+          var m_col_list = ''; var m_col_list_with_AGG = ''; var m_col_list_with_tbl_InData2 = ''; var m_col_list_with_tbl_InData3 = '';
           for( var y=0;y<measureCnt;y++) { 
             var m = parseInt(y) + parseInt(dimCount);            
             m_col_list = m_col_list + col_d_m_array2[m] + ", ";
             m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2 + 'tbl_InData2.'+col_d_m_array2[m] + ", ";
+            m_col_list_with_tbl_InData3 = m_col_list_with_tbl_InData3 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
             m_col_list_with_AGG = m_col_list_with_AGG + ' SUM('+ col_d_m_array2[m] + ') As '+col_d_m_array2[m]+', ';
           }
           m_col_list = m_col_list.trim().slice(0, -1);
@@ -416,16 +417,26 @@
           var Ins_Val_tbl_InData3 = ' SELECT dimension1, dimension2, dimension3, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1, dimension2, dimension3 ';
           var q3 = Ins_into_tbl_InData3 + Ins_Val_tbl_InData3; 
           alasql(q3);
-          var q3_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData3'); //// working fine           
-          document.getElementById("t1").innerHTML = JSON.stringify(q3_op);  //// working fine
-
+          //var q3_op = alasql('SELECT Id, parentID, dimension1, dimension2, dimension3, measure1, measure2 FROM tbl_InData3'); //// working fine           
+          //document.getElementById("t1").innerHTML = JSON.stringify(q3_op);  //// working fine
+          var Ins_into_gBy3 = 'INSERT INTO tbl_InData(parentID,dimension1,'+m_col_list + ') ';
+          var Ins_Val_gBy3 =  ' SELECT  tbl_InData.Id AS parentID, tbl_InData3.dimension3 As dimension1,' + m_col_list_with_tbl_InData3 + ' FROM tbl_InData3 ';
+              Ins_Val_gBy3 = Ins_Val_gBy3 + ' LEFT JOIN tbl_InData ON tbl_InData3.dimension2 = tbl_InData.dimension2 ';
+          var q3_2 = Ins_into_gBy3 + Ins_Val_gBy3;
+          alasql(q3_2);     
           //----------insert--3---alternate--code--block--------end-----(3dim's, all measures)----------------------
 
 
 
           //var p_c_data = alasql("SELECT Id, Category, SubCategory, Manufacturer, Quantity, Sales FROM tbl_InData4")
           //var p_c_data = alasql("SELECT Id, Category, SubCategory, Manufacturer, parentID, Quantity, Sales FROM tbl_InData3") // data is coming 
-          var p_c_data = alasql("SELECT Id, Category, SubCategory, parentID, Quantity, Sales FROM tbl_InData")
+
+          //// this is working as part of hard coded logic
+          //var p_c_data = alasql("SELECT Id, Category, SubCategory, parentID, Quantity, Sales FROM tbl_InData")
+
+          /////// updated 
+          var p_c_data = alasql("SELECT Id, dimension1, dimension2, parentID, measure1, measure2 FROM tbl_InData")
+
           //document.getElementById("t1").innerHTML = JSON.stringify(p_c_data);
           //document.getElementById("t1").innerHTML = qry3;
           
@@ -437,6 +448,7 @@
           //document.getElementById("t1").innerHTML = str2;
           var tableDataNested3 = JSON.parse(str2);
 
+            /*          
             var table = new Tabulator("#example-table", {
               height:"311px",
               data:tableDataNested3,
@@ -447,6 +459,20 @@
               {title:"Category", field:"Category", width:150, responsive:0},
               {title:"Quantity", field:"Quantity"},
               {title:"Sales", field:"Sales"},
+              ],
+            });
+            */
+
+            var table = new Tabulator("#example-table", {
+              height:"311px",
+              data:tableDataNested3,
+              dataTree:true,
+              dataTreeStartExpanded:false,   // dataTreeStartExpanded:true,
+              columns:[
+              //{title:"Id", field:"Id", width:200, responsive:0}, //never hide this column
+              {title:"Category", field:"dimension1", width:150, responsive:0},
+              {title:"Quantity", field:"measure1"},
+              {title:"Sales", field:"measure2"},
               ],
             });
 

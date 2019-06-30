@@ -478,16 +478,15 @@
 
           //----------insert--5---alternate--code--block--------start-----(5dim's, all measures)----------------------
           if(5<= dimCount){
-            var Ins_into_tbl_InData5 = 'INSERT INTO tbl_InData5(dimension1,dimension2,dimension3,dimension4,dimension5,';
-                Ins_into_tbl_InData5 = Ins_into_tbl_InData5 + m_col_list + ') ';
+            var Ins_into_tbl_InData5 = 'INSERT INTO tbl_InData5(dimension1,dimension2,dimension3,dimension4,dimension5,' + m_col_list + ') ';                
             var Ins_Val_tbl_InData5 = ' SELECT dimension1,dimension2,dimension3,dimension4,dimension5,' + m_col_list_with_AGG + ' FROM tblSheetData '
-                                        + ' GROUP BY dimension1,dimension2,dimension3, dimension4, dimension5';
+                                        + ' GROUP BY dimension1, dimension2, dimension3, dimension4, dimension5';
             var q5 = Ins_into_tbl_InData5 + Ins_Val_tbl_InData5; 
             alasql(q5);
             
             var Ins_into_gBy5 = 'INSERT INTO tbl_InData(parentID,dimension1,dimension2,dimension3,dimension4,dimension5,'+m_col_list + ') ';  
             var Ins_Val_gBy5 =  ' SELECT tbl_InData.Id AS parentID, tbl_InData5.dimension5 As dimension1, tbl_InData5.dimension2, tbl_InData5.dimension3, '
-                                      + ' tbl_InData5.dimension4, tbl_InData5.dimension5, ' + m_col_list_with_tbl_InData4 + ' FROM tbl_InData5 ';
+                                      + ' tbl_InData5.dimension4, tbl_InData5.dimension5, ' + m_col_list_with_tbl_InData5 + ' FROM tbl_InData5 ';
                 Ins_Val_gBy5 = Ins_Val_gBy5 + ' LEFT JOIN tbl_InData ON tbl_InData5.dimension4 = tbl_InData.dimension4 ';
             var q5_2 = Ins_into_gBy5 + Ins_Val_gBy5;
             alasql(q5_2);

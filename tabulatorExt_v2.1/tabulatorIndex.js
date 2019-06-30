@@ -487,7 +487,7 @@
             
             var Ins_into_gBy5 = 'INSERT INTO tbl_InData(parentID,dimension1,dimension2,dimension3,dimension4,dimension5,'+m_col_list + ') ';  
             var Ins_Val_gBy5 =  ' SELECT tbl_InData.Id AS parentID, tbl_InData5.dimension5 As dimension1, tbl_InData5.dimension2, tbl_InData5.dimension3, '
-                                      ' tbl_InData5.dimension4, tbl_InData5.dimension5, ' + m_col_list_with_tbl_InData4 + ' FROM tbl_InData5 ';
+                                      + ' tbl_InData5.dimension4, tbl_InData5.dimension5, ' + m_col_list_with_tbl_InData4 + ' FROM tbl_InData5 ';
                 Ins_Val_gBy5 = Ins_Val_gBy5 + ' LEFT JOIN tbl_InData ON tbl_InData5.dimension4 = tbl_InData.dimension4 ';
             var q5_2 = Ins_into_gBy5 + Ins_Val_gBy5;
             alasql(q5_2);

@@ -361,11 +361,12 @@
           var q1 = Ins_into_gBy1 + Ins_Val_gBy1; 
           //alert(q1);
           alasql(q1);
-          var q1_op = alasql('SELECT Id, parentID, dimension1, measure1, measure2 FROM tbl_InData');
-          alert(JSON.stringify(q1_op));
-          //----------insert--1--- alternate--code--block-----------------------------------
+          var q1_op = alasql('SELECT Id, parentID, dimension1, measure1, measure2 FROM tbl_InData'); //// working fine
+          //alert(JSON.stringify(q1_op));  //// working fine
+          //----------insert--1--- alternate--code--block--------end---------------------------
 
           //insert--2---
+          /*
           alasql('INSERT INTO tbl_InData2(Category, SubCategory, Quantity, Sales) \
                      SELECT  Category, SubCategory, SUM(Quantity) As Quantity, SUM(Sales) AS Sales FROM tblSheetData GROUP BY Category, SubCategory ');
           //var res = alasql('SELECT * FROM tbl_InData2');
@@ -375,6 +376,17 @@
               qry2 = qry2 + ' tbl_InData2 LEFT OUTER JOIN tbl_InData ON tbl_InData2.Category = tbl_InData.Category ';
           alasql(qry2);
           //var p_c_data = alasql("SELECT Id, Category, SubCategory, Manufacturer, parentID, Quantity, Sales FROM tbl_InData")
+          */
+          //----------insert--2---alternate--code--block--------start-----tbl_InData2(2dim's, all measures)----------------------
+          var Ins_into_tbl_InData2 = 'INSERT INTO tbl_InData2(dimension1,dimension2,';
+              Ins_into_tbl_InData2 = Ins_into_tbl_InData2 + m_col_list + ') ';
+          var Ins_Val_tbl_InData2 = ' SELECT dimension1, dimension2, ' + m_col_list_with_AGG + ' FROM tblSheetData GROUP BY dimension1, dimension2 ';
+          var q2 = Ins_into_tbl_InData2 + Ins_Val_tbl_InData2; 
+          alasql(q2);
+          var q2_op = alasql('SELECT Id, parentID, dimension1, dimension2, measure1, measure2 FROM tbl_InData2');           
+          alert(JSON.stringify(q2_op));  //// working fine
+          //----------insert--2---alternate--code--block--------end-----------------------------
+
 
           //alasql("SELECT Id, ")
 

@@ -255,14 +255,14 @@
           }
           crt_tbl_t1_col = crt_tbl_t1_col.trim().slice(0, -1);
           crt_tbl_t1 = crt_tbl_t1 + crt_tbl_t1_col + ')';
-          alert(crt_tbl_t1);
-          alasql(crt_tbl_t1);
+          //alert(crt_tbl_t1);
+          alasql(crt_tbl_t1);  //// create table for worksheet data
           //alasql('INSERT INTO tblSheetData(Category,Quantity) VALUES("cate1",10) ');
           //alasql('INSERT INTO tblSheetData(Category,Quantity) VALUES("cate1",20) ');
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');
           var insertQry = "";
           // alert(tableData7[0].Category);  // this JSON object propery names changed to generic names, so it does not work
-          alert(tableData7[0].dimension1);
+          //alert(tableData7[0].dimension1);
           /* // working fine
           for(var x=0;x<tableData7.length;x++)
           {            
@@ -307,21 +307,30 @@
                 } else if(parseInt(measureCnt)==4){
                   insertQry = insertQry + ' '+tableData7[x].measure1+', '+tableData7[x].measure2 + ', '+tableData7[x].measure3 + ', '+tableData7[x].measure4 + ') ';
                 } else if(parseInt(measureCnt)==5) {
-                  insertQry = insertQry + ' '+tableData7[x].measure1+', '+tableData7[x].measure2 + ', '+tableData7[x].measure3 + ', '+tableData7[x].measure4 + ', '+tableData7[x].measure + ') ';
+                  insertQry = insertQry + ' '+tableData7[x].measure1+', '+tableData7[x].measure2 + ', '+tableData7[x].measure3 + ', '+tableData7[x].measure4 + ', '+tableData7[x].measure5 + ') ';
                 }
                 //alert(insertQry);
                 alasql(insertQry);
             }
-           alert(JSON.stringify(alasql('SELECT dimension1, SUM(measure1) As Q FROM tblSheetData GROUP BY dimension1')));
-          //// alternate code for above block /////////////// JSON.stringify(p_c_data);
+           //alert(JSON.stringify(alasql('SELECT dimension1, SUM(measure1) As measure1 FROM tblSheetData GROUP BY dimension1')));
+          //// alternate code for above block /////////////// 
           
           //var res = alasql('SELECT Category, SUM(Quantity) As Q FROM tblSheetData GROUP BY Category');
           alasql('DROP TABLE IF EXISTS tbl_InData');
-          alasql('CREATE TABLE tbl_InData(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          //alasql('CREATE TABLE tbl_InData(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          var crt_tbl_InData = ' CREATE TABLE tbl_InData( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )';
+          alert(crt_tbl_InData);
+
           alasql('DROP TABLE IF EXISTS tbl_InData2');
-          alasql('CREATE TABLE tbl_InData2(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          //alasql('CREATE TABLE tbl_InData2(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          var crt_tbl_InData2 = ' CREATE TABLE tbl_InData2( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )';
+          alert(crt_tbl_InData2);
+
           alasql('DROP TABLE IF EXISTS tbl_InData3');
-          alasql('CREATE TABLE tbl_InData3(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          //alasql('CREATE TABLE tbl_InData3(Id INT IDENTITY(1,1), parentID INT, Category STRING, SubCategory STRING, Manufacturer STRING, Quantity REAL, Sales REAL)');
+          var crt_tbl_InData3 = ' CREATE TABLE tbl_InData3( ' + 'Id INT IDENTITY(1,1), parentID INT, ' + crt_tbl_t1_col + ' )'; 
+          alert(crt_tbl_InData3);
+
           //alasql('INSERT INTO tbl_InData VALUES (1,NULL,"Technology","Tech-1","Tech-2",100.23,200 )');   // insert option 1
           //alasql('INSERT INTO tbl_InData(parentID,Category) VALUES (1,"Technology")');    // insert option 2
           

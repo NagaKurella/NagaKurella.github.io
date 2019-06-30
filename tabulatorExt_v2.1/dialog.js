@@ -257,6 +257,7 @@
 
     tableau.extensions.settings.set("optradio_theme", $("#optradio_theme").val());
 
+    alert(" In saving .... " + $("input[name='tabulatorType']:checked").val());
     tableau.extensions.settings.set("tabulator_Type", $("input[name='tabulatorType']:checked").val());
 
     // Create a string which will hold the datatable.net css options called tableClass.

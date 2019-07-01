@@ -247,6 +247,31 @@
 			  var dim_Count = 0, measure_Cnt = 0;
 				dim_Count = tableau.extensions.settings.get("Dimensions_Count");
 				measure_Cnt = tableau.extensions.settings.get("Measures_Count");
+				
+				///////// ------- prepare dataset --------------------------------------////////
+				const worksheetData_grid = sumdata.data;
+				var column_order_grid = tableau.extensions.settings.get("column_order").split("|");
+
+				var jstr_grid = ""; var tableData7_grid ; 
+						var tableData_grid = makeArray(sumdata.columns.length, (sumdata.totalRowCount));
+						for (var i = 0; i < (tableData_grid.length); i++) {
+						  var str1 = "";
+						  for (var j = 0; j < tableData_grid[i].length; j++) {
+							//tableData[i][j] = worksheetData[i][column_order[j]-1].formattedValue; // for formatted value
+							  tableData_grid[i][j] = worksheetData_grid[i][column_order_grid[j]-1].value;
+							//alert(tableData[i][j]);          
+						   
+							//str1 = str1 + " \""+column_names[j].toString() + "\" :  \"" + tableData[i][j].toString() + "\" , "; //// working fine
+							//str1 = str1 + " \""+data_col[j].title.toString() + "\" :  \"" + tableData[i][j].toString() + "\" , "; /// working fine
+							str1 = str1 + " \""+data_col[j].genericname.toString() + "\" :  \"" + tableData_grid[i][j].toString() + "\" , ";
+							//str1 = str1 + "Col_"+j.toString() +": " + tableData[i][j].toString() + "  , "; 
+						  }
+						  jstr_grid = jstr_grid + " { " + str1.trim().slice(0, -1) + " }, ";
+						  
+						}
+					tableData7_grid = JSON.parse("["+jstr_grid.trim().slice(0, -1)+"]");
+				///////// ------- prepare dataset --------------------------------------////////	
+				
 			  
 			  var tabulator_columns_0 = [];
 			  for(var n=0;n<dim_Count;n++) { tabulator_columns_0.push({title:col_AltNames_array2[n], field:col_d_m_array2[n]}); }
@@ -258,7 +283,7 @@
 			  
               var table = new Tabulator("#example-table", {
                 height:370, // set height of table to enable virtual DOM
-                data:tableData7, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)
+                data:tableData7_grid, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)
                 //autoColumns:true, 
                 columns:tabulator_columns_0,
                 layout:"fitColumns", //fit columns to width of table (optional)

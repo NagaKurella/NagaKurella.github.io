@@ -251,7 +251,7 @@
 				///////// ------- prepare dataset --------------------------------------////////
 				const worksheetData_grid = sumdata.data;
 				var column_order_grid = tableau.extensions.settings.get("column_order").split("|");
-				for(var x=0; x<column_order_grid.length; x++) {alert(column_order_grid[x]); }
+				//for(var x=0; x<column_order_grid.length; x++) {alert(column_order_grid[x]); }
 
 				var jstr_grid = ""; var tableData7_grid ; 
 						var tableData_grid = makeArray(sumdata.columns.length, (sumdata.totalRowCount));
@@ -572,7 +572,7 @@
           //var p_c_data = alasql("SELECT Id, dimension1, dimension2, parentID, measure1, measure2 FROM tbl_InData")
           var p_c_data = alasql("SELECT Id, parentID, " + m_dim_list + " , " + m_col_list + " FROM tbl_InData")
 
-          document.getElementById("t1").innerHTML = JSON.stringify(p_c_data);
+          //document.getElementById("t1").innerHTML = JSON.stringify(p_c_data);
           //document.getElementById("t1").innerHTML = qry3;
           
           //// now, convert parent&child structure data into proper JSON parent child format

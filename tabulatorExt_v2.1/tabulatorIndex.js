@@ -251,6 +251,7 @@
 				///////// ------- prepare dataset --------------------------------------////////
 				const worksheetData_grid = sumdata.data;
 				var column_order_grid = tableau.extensions.settings.get("column_order").split("|");
+				for(var x=0; x<column_order_grid.length; x++) {alert(column_order_grid[x]); }
 
 				var jstr_grid = ""; var tableData7_grid ; 
 						var tableData_grid = makeArray(sumdata.columns.length, (sumdata.totalRowCount));

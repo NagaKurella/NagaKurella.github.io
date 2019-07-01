@@ -248,7 +248,7 @@
               });
         }
         else {
-
+                alert(" in tabulator_nested condition");
         
 
         /////////// code drill down ////////////////////////////////

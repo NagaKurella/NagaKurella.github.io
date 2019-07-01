@@ -233,16 +233,34 @@
         }
 
         var tabulator_tbl_type = tableau.extensions.settings.get("tabulator_Type");
-        alert(" Tabulator TYPE :" + tabulator_tbl_type);
+        //alert(" Tabulator TYPE :" + tabulator_tbl_type);
+		
+		var column_names_array2 = tableau.extensions.settings.get("column_names").split("|");
+        var column_order_array2 = tableau.extensions.settings.get("column_order").split("|");
+        var col_AltNames_array2 = tableau.extensions.settings.get("col_AltNames").split("|");
+        var col_d_m_array2 = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
+		
         if(tabulator_tbl_type == "tabulator_grid"){
-              alert(" in tabulator_grid condition");
+              //alert(" in tabulator_grid condition");
               $("#example-table").text("");
 
+			  var dim_Count = 0, measure_Cnt = 0;
+				dim_Count = tableau.extensions.settings.get("Dimensions_Count");
+				measure_Cnt = tableau.extensions.settings.get("Measures_Count");
+			  
+			  var tabulator_columns_0 = [];
+			  for(var n=0;n<dim_Count;n++) { tabulator_columns_0.push({title:col_AltNames_array2[n], field:col_d_m_array2[n]}); }
+            
+				for(var y=0;y<measure_Cnt;y++) { 
+					var m = parseInt(y) + parseInt(dim_Count);
+					tabulator_columns_0.push({title:col_AltNames_array2[m], field:col_d_m_array2[m]});              
+				}
+			  
               var table = new Tabulator("#example-table", {
                 height:370, // set height of table to enable virtual DOM
                 data:tableData7, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)
-                autoColumns:true, 
-                //columns:data_col,
+                //autoColumns:true, 
+                columns:tabulator_columns_0,
                 layout:"fitColumns", //fit columns to width of table (optional)
                 pagination:"local",
                 paginationSize:10,
@@ -250,15 +268,17 @@
               });
         }
         else {
-                alert(" in tabulator_nested condition");
+                //alert(" in tabulator_nested condition");
                 $("#example-table").text("");
 
         /////////// code drill down ////////////////////////////////
         //var column_order = tableau.extensions.settings.get("column_order");
-        var column_names_array2 = tableau.extensions.settings.get("column_names").split("|");
-        var column_order_array2 = tableau.extensions.settings.get("column_order").split("|");
-        var col_AltNames_array2 = tableau.extensions.settings.get("col_AltNames").split("|");
-        var col_d_m_array2 = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
+		
+        //var column_names_array2 = tableau.extensions.settings.get("column_names").split("|");
+        //var column_order_array2 = tableau.extensions.settings.get("column_order").split("|");
+        //var col_AltNames_array2 = tableau.extensions.settings.get("col_AltNames").split("|");
+        //var col_d_m_array2 = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
+		
         var dimCount = 0, measureCnt = 0;
         dimCount = tableau.extensions.settings.get("Dimensions_Count");
         measureCnt = tableau.extensions.settings.get("Measures_Count");

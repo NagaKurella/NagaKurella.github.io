@@ -107,9 +107,9 @@
     //  columnsUpdate();
     //});
 
-    $("input[name='tabulatorType']").val(tableau.extensions.settings.get("tabulator_Type"));
+    //$("input[name='tabulatorType']").val(tableau.extensions.settings.get("tabulator_Type"));    
+    $("#selecttabulatorGridType").val(tableau.extensions.settings.get("tabulator_Type"));
 
-    
 
     //$("#max_no_records").val(tableau.extensions.settings.get("max_no_records"));
     $("#optradio_theme").val(tableau.extensions.settings.get("optradio_theme"));

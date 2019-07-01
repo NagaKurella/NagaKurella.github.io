@@ -236,6 +236,8 @@
         alert(" Tabulator TYPE :" + tabulator_tbl_type);
         if(tabulator_tbl_type == "tabulator_grid"){
               alert(" in tabulator_grid condition");
+              $("#example-table").text("");
+
               var table = new Tabulator("#example-table", {
                 height:370, // set height of table to enable virtual DOM
                 data:tableData7, //load initial data into table    JSONobj.arPoints   tableData7 JSON.stringify(tableData7)  JSON.parse(jstr)
@@ -249,7 +251,7 @@
         }
         else {
                 alert(" in tabulator_nested condition");
-        
+                $("#example-table").text("");
 
         /////////// code drill down ////////////////////////////////
         //var column_order = tableau.extensions.settings.get("column_order");

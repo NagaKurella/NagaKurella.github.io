@@ -69,7 +69,7 @@
         tr_tag = '<tr>';
         tr_tag = tr_tag + '<td> <span>::::</span> '+i+' </td> ';
         tr_tag = tr_tag + '<td> <h5><label class= class="'+fieldType_dim_Measure(column_names_array[i]).badgeCSSClassName+'"  >'+column_names_array[i]+'</label></h5> </td>';
-        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + (i+1) + '" class="form-control" value="'+ col_AltNames_array[i] +'" data-fieldname= "'+column_names_array[i]+'" data-fieldtype= "'+col_d_m_array[i]+'" /> </td>';
+        tr_tag = tr_tag + '<td> <input type="text" id="alt_fldName_'+i+'" col_num="' + column_order_array[i] + '" class="form-control" value="'+ col_AltNames_array[i] +'" data-fieldname= "'+column_names_array[i]+'" data-fieldtype= "'+col_d_m_array[i]+'" /> </td>';
         tr_tag = tr_tag + '<td> <select id="fldType_'+i+'" > <option value="dimension">Dimension</option> <option value="Measure">Measure</option> </select> </td>';
         tr_tag = tr_tag + '</tr>';
         //alert(tr_tag);

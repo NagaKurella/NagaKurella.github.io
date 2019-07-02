@@ -276,10 +276,16 @@
     }); */
     //alert(tabulator_GRID_type);
 
+    alert($('input:radio[name=tabulatorType]:checked').val());
+
+
     //alert(" In saving .... " + $('input[name=tabulatorType]:checked').val());
     //alert(" In saving .... " + $("#tabulatorType").val());
     //tableau.extensions.settings.set("tabulator_Type", $("input[name=tabulatorType]:checked").val()); 
     tableau.extensions.settings.set("tabulator_Type", $("#selecttabulatorGridType").val() );
+
+
+
 
     // Create a string which will hold the datatable.net css options called tableClass.
     // Also saves the individual Y and N so that we can restore the settings when you

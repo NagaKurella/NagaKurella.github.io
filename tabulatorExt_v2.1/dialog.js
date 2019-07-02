@@ -110,6 +110,13 @@
     //$("input[name='tabulatorType']").val(tableau.extensions.settings.get("tabulator_Type"));    
     $("#selecttabulatorGridType").val(tableau.extensions.settings.get("tabulator_Type"));
 
+    if(tableau.extensions.settings.get("tabulator_Type") == "tabulator_grid"){
+      // reser ==> $('input:radio[name=tabulatorType]').attr('checked',false);
+      $('input:radio[name=tabulatorType]:nth(0)').attr('checked',true);
+    }else {
+      $('input:radio[name=tabulatorType]:nth(1)').attr('checked',true);
+    }
+
 
     //$("#max_no_records").val(tableau.extensions.settings.get("max_no_records"));
     $("#optradio_theme").val(tableau.extensions.settings.get("optradio_theme"));
@@ -276,13 +283,17 @@
     }); */
     //alert(tabulator_GRID_type);
 
-    alert($('input:radio[name=tabulatorType]:checked').val());
+    
 
 
     //alert(" In saving .... " + $('input[name=tabulatorType]:checked').val());
     //alert(" In saving .... " + $("#tabulatorType").val());
-    //tableau.extensions.settings.set("tabulator_Type", $("input[name=tabulatorType]:checked").val()); 
-    tableau.extensions.settings.set("tabulator_Type", $("#selecttabulatorGridType").val() );
+    //tableau.extensions.settings.set("tabulator_Type", $("input[name=tabulatorType]:checked").val());
+
+    //tableau.extensions.settings.set("tabulator_Type", $("#selecttabulatorGridType").val() );
+    var tabulator_GRID_type = '';
+    tabulator_GRID_type = $('input:radio[name=tabulatorType]:checked').val();
+    tableau.extensions.settings.set("tabulator_Type", tabulator_GRID_type );
 
 
 

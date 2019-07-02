@@ -80,14 +80,14 @@
     //var max_no_records = tableau.extensions.settings.get("max_no_records");
 
     var table_themeName = tableau.extensions.settings.get("optradio_theme");
-    if(table_themeName == "theme1"){
+    if(table_themeName == "standard"){
       $('head').append('<link rel="stylesheet" href="tabulator.min.css" type="text/css" />');
-    }else if(table_themeName == "theme2"){
+    }else if(table_themeName == "simple"){
       $('head').append('<link rel="stylesheet" href="tabulator_simple.min.css" type="text/css" />');
     }
-    else  if(table_themeName == "theme3"){
+    else  if(table_themeName == "dark"){
       $('head').append('<link rel="stylesheet" href="tabulator_midnight.min.css" type="text/css" />');
-    }
+    } else { $('head').append('<link rel="stylesheet" href="tabulator.min.css" type="text/css" />'); }
 
     // Add an event listener to the worksheet.
     unregisterFilterEventListener = worksheet.addEventListener(tableau.TableauEventType.FilterChanged, (filterEvent) => {

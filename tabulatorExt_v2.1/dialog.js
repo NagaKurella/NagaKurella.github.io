@@ -113,8 +113,10 @@
     if(tableau.extensions.settings.get("tabulator_Type") == "tabulator_grid"){
       // reser ==> $('input:radio[name=tabulatorType]').attr('checked',false);
       $('input:radio[name=tabulatorType]:nth(0)').attr('checked',true);
-    }else {
+    }else if(tableau.extensions.settings.get("tabulator_Type") == "tabulator_nested"){
       $('input:radio[name=tabulatorType]:nth(1)').attr('checked',true);
+    }else { 
+      $('input:radio[name=tabulatorType]:nth(0)').attr('checked',true); 
     }
 
 

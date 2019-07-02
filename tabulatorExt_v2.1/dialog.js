@@ -107,8 +107,7 @@
     //  columnsUpdate();
     //});
 
-    //$("input[name='tabulatorType']").val(tableau.extensions.settings.get("tabulator_Type"));    
-    $("#selecttabulatorGridType").val(tableau.extensions.settings.get("tabulator_Type"));
+    
 
     if(tableau.extensions.settings.get("tabulator_Type") == "tabulator_grid"){
       // reser ==> $('input:radio[name=tabulatorType]').attr('checked',false);
@@ -121,7 +120,19 @@
 
 
     //$("#max_no_records").val(tableau.extensions.settings.get("max_no_records"));
-    $("#optradio_theme").val(tableau.extensions.settings.get("optradio_theme"));
+    //$("#optradio_theme").val(tableau.extensions.settings.get("optradio_theme"));
+
+    if(tableau.extensions.settings.get("optradio_theme") == "standard"){
+      $('input:radio[name=optradio_CSS]:nth(0)').attr('checked',true);
+    } else if(tableau.extensions.settings.get("optradio_theme") == "simple") { 
+      $('input:radio[name=optradio_CSS]:nth(1)').attr('checked',true);
+    } else if(tableau.extensions.settings.get("optradio_theme") == "dark") { 
+      $('input:radio[name=optradio_CSS]:nth(2)').attr('checked',true);
+    } else {
+      $('input:radio[name=optradio_CSS]:nth(0)').attr('checked',true);
+    }
+
+
 
     //$('select').formSelect();
     //$('.tabs').tabs();
@@ -264,7 +275,7 @@
     //tableau.extensions.settings.set("max_no_records", $("#max_no_records").val());
     //tableau.extensions.settings.set("underlying", $("#underlying").val());
 
-    tableau.extensions.settings.set("optradio_theme", $("#optradio_theme").val());
+    
 
     var tabulator_GRID_type = '';
     //alert($("#tabulatorGridType").val());
@@ -285,20 +296,19 @@
     }); */
     //alert(tabulator_GRID_type);
 
-    
-
-
-    //alert(" In saving .... " + $('input[name=tabulatorType]:checked').val());
-    //alert(" In saving .... " + $("#tabulatorType").val());
-    //tableau.extensions.settings.set("tabulator_Type", $("input[name=tabulatorType]:checked").val());
-
-    //tableau.extensions.settings.set("tabulator_Type", $("#selecttabulatorGridType").val() );
     var tabulator_GRID_type = '';
     tabulator_GRID_type = $('input:radio[name=tabulatorType]:checked').val();
     tableau.extensions.settings.set("tabulator_Type", tabulator_GRID_type );
 
-
-
+    var tabulator_CSS_type = '';
+    tabulator_CSS_type = $('input:radio[name=optradio_CSS]:checked').val();
+    if (tabulator_CSS_type == undefined && tabulator_CSS_type == '') {
+      tableau.extensions.settings.set("optradio_theme", "standard");
+    }
+    else { 
+      tableau.extensions.settings.set("optradio_theme", tabulator_CSS_type);
+    }
+    //tableau.extensions.settings.set("optradio_theme", $("#optradio_theme").val());
 
     // Create a string which will hold the datatable.net css options called tableClass.
     // Also saves the individual Y and N so that we can restore the settings when you

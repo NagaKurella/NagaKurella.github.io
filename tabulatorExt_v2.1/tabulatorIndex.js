@@ -423,6 +423,7 @@
           m_dim_list = m_dim_list.trim().slice(0, -1);
           
           var m_col_list = ''; 
+	  var m_col_list_4_roundVal = '';
           var m_col_list_with_AGG = ''; 
           var m_col_list_with_tbl_InData2 = ''; 
           var m_col_list_with_tbl_InData3 = '';
@@ -432,6 +433,7 @@
           for( var y=0;y<measureCnt;y++) { 
             var m = parseInt(y) + parseInt(dimCount);            
             m_col_list = m_col_list + col_d_m_array2[m] + ", ";
+        m_col_list_4_roundVal = m_col_list_4_roundVal + "CAST(" +col_d_m_array2[m] + " AS DECIMAL(10,2)) AS "+ col_d_m_array2[m]+", ";
             m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2 + 'tbl_InData2.'+col_d_m_array2[m] + ", ";
             m_col_list_with_tbl_InData3 = m_col_list_with_tbl_InData3 + 'tbl_InData3.'+col_d_m_array2[m] + ", ";
             m_col_list_with_tbl_InData4 = m_col_list_with_tbl_InData4 + 'tbl_InData4.'+col_d_m_array2[m] + ", ";
@@ -439,6 +441,7 @@
             m_col_list_with_AGG = m_col_list_with_AGG + ' SUM('+ col_d_m_array2[m] + ') As '+col_d_m_array2[m]+', ';
           }
           m_col_list = m_col_list.trim().slice(0, -1);
+	  m_col_list_4_roundVal = m_col_list_4_roundVal.trim().slice(0, -1);
           m_col_list_with_tbl_InData2 = m_col_list_with_tbl_InData2.trim().slice(0, -1);
           m_col_list_with_tbl_InData3 = m_col_list_with_tbl_InData3.trim().slice(0, -1);
           m_col_list_with_tbl_InData4 = m_col_list_with_tbl_InData4.trim().slice(0, -1);
@@ -570,7 +573,8 @@
 
           /////// updated 
           //var p_c_data = alasql("SELECT Id, dimension1, dimension2, parentID, measure1, measure2 FROM tbl_InData")
-          var p_c_data = alasql("SELECT Id, parentID, " + m_dim_list + " , " + m_col_list + " FROM tbl_InData")
+          //var p_c_data = alasql("SELECT Id, parentID, " + m_dim_list + " , " + m_col_list + " FROM tbl_InData")
+	  var p_c_data = alasql("SELECT Id, parentID, " + m_dim_list + " , " + m_col_list_4_roundVal + " FROM tbl_InData")
 
           //document.getElementById("t1").innerHTML = JSON.stringify(p_c_data);
           //document.getElementById("t1").innerHTML = qry3;

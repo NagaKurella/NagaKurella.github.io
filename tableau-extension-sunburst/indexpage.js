@@ -23,6 +23,7 @@
       unregisterSettingsEventListener = tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
         renderDataTable();
       });
+
       tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
         parameters.forEach(function (p) {
           p.addEventListener(tableau.TableauEventType.ParameterChanged, (filterEvent) => {
@@ -196,6 +197,7 @@
 				}
 
         document.getElementById("t1").innerHTML = JSON.stringify(tableData7);
+        alert("hi..");
     
         //////---------------- script for d-3 sunburst chart  : end --///////////////////////////////
         

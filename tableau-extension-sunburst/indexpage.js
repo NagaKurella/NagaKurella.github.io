@@ -181,7 +181,7 @@
         }  
        
 
-        var tabulator_tbl_type = tableau.extensions.settings.get("tabulator_Type");
+        //var tabulator_tbl_type = tableau.extensions.settings.get("tabulator_Type");
         //alert(" Tabulator TYPE :" + tabulator_tbl_type);
 		
 		    	

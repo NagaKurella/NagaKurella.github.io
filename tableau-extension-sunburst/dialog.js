@@ -250,27 +250,7 @@
     tableau.extensions.settings.set("worksheet", $("#selectWorksheet").val());
     //tableau.extensions.settings.set("max_no_records", $("#max_no_records").val());
     //tableau.extensions.settings.set("underlying", $("#underlying").val());
-
-    
-
-    var tabulator_GRID_type = '';
-    //alert($("#tabulatorGridType").val());
-    /*var radioButtons = document.getElementsByName("tabulatorType");
-    for (var i = 0; i < radioButtons.length; i++) {
-        if (radioButtons[i].checked) {
-          tabulator_GRID_type = radioButtons[i].value;
-      }
-    }
-
-    $("input[name='tabulatorType']").each(function() {
-      alert($(this).val());
-
-      if ($(this).val() == isactive) {
-        $(this).prop("checked", "checked");
-      }
-
-    }); */
-    //alert(tabulator_GRID_type);
+        
 
     var tabulator_GRID_type = '';
     tabulator_GRID_type = $('input:radio[name=tabulatorType]:checked').val();

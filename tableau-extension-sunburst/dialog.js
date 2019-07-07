@@ -4,12 +4,18 @@
 
   $(document).ready(function () {    
     
+
+
+    $('.table-sortable tbody').sortable({
+      handle: 'span'
+    });
+
     $("#tblFieldInfo").sortable({
       handle: 'span'
     });
 
     tableau.extensions.initializeDialogAsync().then(function (openPayload) {
-      buildDialog();
+      //buildDialog();
     });
   });
 

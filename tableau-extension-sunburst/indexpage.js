@@ -59,7 +59,7 @@
       $("#configure").show();
 
 
-      $("#example-chart").text("");
+      //$("#example-chart").text("");
       if( tableReference !== null) {
         tableReference.destroy();
       }
@@ -87,9 +87,8 @@
     });
 
     // If underlying is 1 then get Underlying, else get Summary.
-    if (underlying == 1) {
-      
-
+    if (underlying == 1) {      
+        var x=0;
     } else {
       worksheet.getSummaryDataAsync({ maxRows: 0 }).then(function (sumdata) {
         // We will loop through our column names from our settings and save these into an array

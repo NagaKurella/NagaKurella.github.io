@@ -2,15 +2,11 @@
 
 (function () {
 
-  $(document).ready(function () {
-
-      $('.table-sortable tbody').sortable({
-        handle: 'span'
-      });
-
-      $("#tblFieldInfo").sortable({
-        handle: 'span'
-      });
+  $(document).ready(function () {    
+    
+    $("#tblFieldInfo").sortable({
+      handle: 'span'
+    });
 
     tableau.extensions.initializeDialogAsync().then(function (openPayload) {
       buildDialog();
@@ -158,19 +154,7 @@
     // If underlying is 1 then get Underlying, else get Summary. Note that the columns will
     // look different if you have summary or underlying.
     if (underlying == 1) {
-      // Note that for our purposes and to speed things up we only want 1 record.
-      worksheet.getUnderlyingDataAsync({ maxRows: 1 }).then(function (sumdata) {
-        var worksheetColumns = sumdata.columns;
-        // This blanks out the column list
-        $("#sort-it ol").text("");
-        var counter = 1;
-        worksheetColumns.forEach(function (current_value) {
-          // For each column we add a list item with an input box and label.
-          // Note that this is based on materialisecss.          
-          $("#sort-it ol").append("<li><div class='input-field'><input id='" + current_value.fieldName + "' type='text' col_num=" + counter + "><label for=" + current_value.fieldName + "'>" + current_value.fieldName + "</label></div></li>");
-          counter++;
-        });
-      });
+      
     } else {
       // Note that for our purposes and to speed things up we only want 1 record.
       worksheet.getSummaryDataAsync({ maxRows: 1 }).then(function (sumdata) {

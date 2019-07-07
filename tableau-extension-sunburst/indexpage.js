@@ -185,39 +185,7 @@
         var tabulator_tbl_type = tableau.extensions.settings.get("tabulator_Type");
         //alert(" Tabulator TYPE :" + tabulator_tbl_type);
 		
-		    var column_names_array2 = tableau.extensions.settings.get("column_names").split("|");
-        var column_order_array2 = tableau.extensions.settings.get("column_order").split("|");
-        var col_AltNames_array2 = tableau.extensions.settings.get("col_AltNames").split("|");
-        var col_d_m_array2 = tableau.extensions.settings.get("col_Dim_Measures").split("|"); 
-
-        var dim_Count = 0, measure_Cnt = 0;
-				dim_Count = tableau.extensions.settings.get("Dimensions_Count");
-				measure_Cnt = tableau.extensions.settings.get("Measures_Count");
-				
-				///////// ------- prepare dataset --------------------------------------////////
-				const worksheetData_grid = sumdata.data;
-				var column_order_grid = tableau.extensions.settings.get("column_order").split("|");
-				//for(var x=0; x<column_order_grid.length; x++) {alert(column_order_grid[x]); }
-
-				var jstr_grid = ""; var tableData7_grid ; 
-						var tableData_grid = makeArray(sumdata.columns.length, (sumdata.totalRowCount));
-						for (var i = 0; i < (tableData_grid.length); i++) {
-						  var str1 = "";
-						  for (var j = 0; j < tableData_grid[i].length; j++) {
-							//tableData[i][j] = worksheetData[i][column_order[j]-1].formattedValue; // for formatted value
-							  tableData_grid[i][j] = worksheetData_grid[i][column_order_grid[j]-1].value;
-							//alert(tableData[i][j]);          
-						   
-							//str1 = str1 + " \""+column_names[j].toString() + "\" :  \"" + tableData[i][j].toString() + "\" , "; //// working fine
-							//str1 = str1 + " \""+data_col[j].title.toString() + "\" :  \"" + tableData[i][j].toString() + "\" , "; /// working fine
-							str1 = str1 + " \""+data_col[j].genericname.toString() + "\" :  \"" + tableData_grid[i][j].toString() + "\" , ";
-							//str1 = str1 + "Col_"+j.toString() +": " + tableData[i][j].toString() + "  , "; 
-						  }
-						  jstr_grid = jstr_grid + " { " + str1.trim().slice(0, -1) + " }, ";
-						  
-						}
-					tableData7_grid = JSON.parse("["+jstr_grid.trim().slice(0, -1)+"]");
-				///////// ------- prepare dataset --------------------------------------////////	
+		    	
 				
 			  
 			  var tabulator_columns_0 = [];
@@ -228,7 +196,7 @@
 					tabulator_columns_0.push({title:col_AltNames_array2[m], field:col_d_m_array2[m]});              
 				}
 
-        document.getElementById("t1").innerHTML = JSON.stringify(tableData7_grid);
+        document.getElementById("t1").innerHTML = JSON.stringify(tableData7);
     
         //////---------------- script for d-3 sunburst chart  : end --///////////////////////////////
         const width = (window.innerWidth * 1.00),
@@ -453,6 +421,7 @@ data11.forEach(function(d){
   function configure() {
     
     const popupUrl = `${window.location.origin}/tableau-extension-sunburst/dialog.html`;
+    //const popupUrl = `${window.location.origin}/dialog.html`;
 
     let input = "";
 

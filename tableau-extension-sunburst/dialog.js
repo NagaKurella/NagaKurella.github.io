@@ -2,8 +2,7 @@
 
 (function () {
 
-  $(document).ready(function () {    
-    
+  $(document).ready(function () {       
 
 
     $('.table-sortable tbody').sortable({
@@ -15,7 +14,7 @@
     });
 
     tableau.extensions.initializeDialogAsync().then(function (openPayload) {
-      //buildDialog();
+      buildDialog();
     });
   });
 
@@ -121,20 +120,7 @@
     }
 
 
-    //$("#max_no_records").val(tableau.extensions.settings.get("max_no_records"));
-    //$("#optradio_theme").val(tableau.extensions.settings.get("optradio_theme"));
-
-    if(tableau.extensions.settings.get("optradio_theme") == "standard"){
-      $('input:radio[name=optradio_CSS]:nth(0)').attr('checked',true);
-    } else if(tableau.extensions.settings.get("optradio_theme") == "simple") { 
-      $('input:radio[name=optradio_CSS]:nth(1)').attr('checked',true);
-    } else if(tableau.extensions.settings.get("optradio_theme") == "dark") { 
-      $('input:radio[name=optradio_CSS]:nth(2)').attr('checked',true);
-    } else {
-      $('input:radio[name=optradio_CSS]:nth(0)').attr('checked',true);
-    }
-
-
+    
 
     //$('select').formSelect();
     //$('.tabs').tabs();
